@@ -8,3 +8,15 @@
 www.{$DOMAIN} {
 	redir https://{$DOMAIN}{uri} permanent
 }
+
+# Expense tracker (github.com/syahrularifuddin/expense-tracker), its own compose stack
+# on this VPS. Reached over the shared `edge` Docker network.
+expense.{$DOMAIN} {
+	encode zstd gzip
+	handle /api/v1/* {
+		reverse_proxy expense-api:8080
+	}
+	handle {
+		reverse_proxy expense-web:3000
+	}
+}

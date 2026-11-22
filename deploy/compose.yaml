@@ -36,11 +36,17 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy_data:/data # TLS certs survive redeploys
       - caddy_config:/config
+    # `edge` is shared with other stacks on this VPS (expense tracker) so Caddy can proxy them.
+    networks: [default, edge]
     depends_on:
       web:
         condition: service_healthy
     restart: unless-stopped
     logging: *logging
+
+networks:
+  edge:
+    external: true
 
 volumes:
   caddy_data:

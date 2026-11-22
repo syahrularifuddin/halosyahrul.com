@@ -76,6 +76,7 @@ jobs:
           # throwaway DOCKER_CONFIG, so no registry login is left on the VPS.
           script: |
             cd "$DEPLOY_DIR"
+            docker network inspect edge >/dev/null 2>&1 || docker network create edge
             PULL_CONFIG=$(mktemp -d)
             echo "$GHCR_TOKEN" | DOCKER_CONFIG="$PULL_CONFIG" docker login ghcr.io -u "$GHCR_USER" --password-stdin
             DOCKER_CONFIG="$PULL_CONFIG" docker compose pull
