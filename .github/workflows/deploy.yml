@@ -82,6 +82,10 @@ jobs:
             DOCKER_CONFIG="$PULL_CONFIG" docker compose pull
             rm -rf "$PULL_CONFIG"
             docker compose up -d --remove-orphans
+            # The bind-mounted Caddyfile changed but compose won't recreate the
+            # container, so reload Caddy in place (fallback: restart it).
+            docker compose exec -T caddy caddy reload --config /etc/caddy/Caddyfile \
+              || docker compose restart caddy
             docker image prune -f
         env:
           DEPLOY_DIR: ${{ secrets.VPS_TARGET_PATH || '/opt/halosyahrul' }}
