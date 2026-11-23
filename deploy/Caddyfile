@@ -20,3 +20,18 @@ expense.{$DOMAIN} {
 		reverse_proxy expense-web:3000
 	}
 }
+
+# IG Grabber (github.com/syahrularifuddin/ig-grabber), its own compose stack on
+# this VPS. Reached over the shared `edge` Docker network.
+ig.{$DOMAIN} {
+	encode zstd gzip
+	handle /api/* {
+		reverse_proxy ig-api:8080
+	}
+	handle /download {
+		reverse_proxy ig-api:8080
+	}
+	handle {
+		reverse_proxy ig-web:3000
+	}
+}
