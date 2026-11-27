@@ -31,8 +31,8 @@ const withColorsLocales = createContentLocales({
     id: 'Soft token'
   },
   softDesc: {
-    en: 'The --gd-* variables. @theme inline maps them to Tailwind colours (bg-card, text-muted, bg-teal-soft...), so one class works in both themes with no dark: variant.',
-    id: 'Variable --gd-*. @theme inline map mereka jadi warna Tailwind (bg-card, text-muted, bg-teal-soft...), jadi satu class jalan di dua theme tanpa variant dark:.'
+    en: 'The --hs-* variables. @theme inline maps them to Tailwind colours (bg-card, text-muted, bg-teal-soft...), so one class works in both themes with no dark: variant.',
+    id: 'Variable --hs-*. @theme inline map mereka jadi warna Tailwind (bg-card, text-muted, bg-teal-soft...), jadi satu class jalan di dua theme tanpa variant dark:.'
   },
   contrastTitle: {
     en: 'Contrast',

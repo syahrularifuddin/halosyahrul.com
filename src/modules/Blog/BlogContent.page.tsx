@@ -10,7 +10,8 @@ import ContentParser from '@/modules/Content/components/ContentParser';
 import ContentInteraction from '@/modules/Content/components/Interaction';
 import { getAllBlogPaths, getContent, getSeriesParts } from '@/modules/Content/services/content-parser';
 import HeroCard from '@/packages/components/base/Displays/HeroCard';
-import Banner from '@/packages/components/layouts/Header/Banner';
+import Image from '@/packages/components/base/Displays/Image';
+import PageHead from '@/packages/components/layouts/PageHead';
 import { getDefaultLanguage } from '@/packages/libs/I18n/utils';
 
 interface Params {
@@ -48,55 +49,50 @@ async function BlogContentPage({ params }: NextPageProps<ParamsWithLang|Params>)
   const seriesParts = await getSeriesParts(content.meta, lang);
   const toc = getTableOfContents(content.source);
   const labels = withBlogContentLocales(lang);
+  // TableOfContents renders nothing below two headings
+  const hasToc = toc.length >= 2;
 
   return (
     <>
       <BlogContentSlugInitializer contentSlug={content.meta.slug} />
       <ReadingProgress targetId="post-body" />
-      <div className="min-h-screen flex flex-col text-base-content">
-        <Banner bgImage={content.meta.image}>
-          <section className="font-serif flex flex-col h-full items-center justify-center text-center">
-            <div className="base-container relative z-10">
-              <div className="liquid-glass-shadow rounded-2xl p-5 sm:p-7 md:p-8 -translate-y-4 sm:-translate-y-6">
-                <h1 className="text-lg sm:text-xl md:text-2xl font-bold leading-snug">
-                  {content.meta.title}
-                </h1>
-                <p className="text-xs sm:text-sm md:text-base mt-3 sm:mt-4 leading-relaxed">
-                  {content.meta.description}
-                </p>
-                <BlogContentInfo className="mt-3 mb-0 text-muted" meta={content.meta} />
-              </div>
-            </div>
-          </section>
-        </Banner>
+      <div className="flex min-h-screen flex-col text-base-content">
+        <PageHead
+          overlap
+          eyebrow={<BlogContentInfo className="justify-start font-mono text-[13px]" meta={content.meta} />}
+          title={content.meta.title}
+          description={content.meta.description}
+          aside={content.meta.image && (
+            <Image
+              src={content.meta.image}
+              alt=""
+              className="aspect-[4/3] w-full rounded-[28px] object-cover"
+              wrapperClassName="flex! w-full"
+            />
+          )}
+        />
 
-        {/* Markdown Content */}
-        <section
-          className={[
-            'w-full mx-auto px-4 py-6 -mt-20 sm:-mt-24 md:-mt-28',
-            'max-w-4xl xl:max-w-6xl xl:grid xl:grid-cols-[minmax(0,1fr)_13rem] xl:gap-8'
-          ].join(' ')}
-        >
-          <HeroCard className="w-full">
-            <SeriesNav
-              className="mb-6"
-              current={content.meta}
-              parts={seriesParts}
-              labels={labels}
-            />
-            <div id="post-body">
-              <ContentParser>
-                {content.content}
-              </ContentParser>
-            </div>
-          </HeroCard>
-          <aside className="hidden xl:block">
-            <TableOfContents
-              className="sticky top-28 mt-32 max-h-[calc(100vh-9rem)] overflow-y-auto pr-1"
-              items={toc}
-              title={labels.toc}
-            />
-          </aside>
+        <section className="wide-container">
+          <div className={['on-panel-edge', hasToc && 'xl:grid xl:grid-cols-[minmax(0,1fr)_15rem] xl:items-start xl:gap-5'].filter(Boolean).join(' ')}>
+            <HeroCard className={hasToc ? undefined : 'mx-auto max-w-3xl'}>
+              <SeriesNav
+                className="mb-6"
+                current={content.meta}
+                parts={seriesParts}
+                labels={labels}
+              />
+              <div id="post-body">
+                <ContentParser>
+                  {content.content}
+                </ContentParser>
+              </div>
+            </HeroCard>
+            {hasToc && (
+              <aside className="sticky top-28 hidden max-h-[calc(100vh-9rem)] overflow-y-auto rounded-3xl bg-card p-5 shadow-soft xl:block">
+                <TableOfContents items={toc} title={labels.toc} />
+              </aside>
+            )}
+          </div>
         </section>
         <ContentInteraction
           meta={content.meta}

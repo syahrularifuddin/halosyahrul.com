@@ -82,12 +82,12 @@ const withContentPipelineLocales = createContentLocales({
     id: 'Jalan di tiap pull request: npm install, terus npm run lint.'
   },
   wfCloudinary: {
-    en: 'Run by hand. Deletes everything under gading.dev/media/ on Cloudinary, then uploads every image in public/media, 7 at a time. Banners are served from there in production; in dev they load from public/media directly.',
-    id: 'Dijalanin manual. Hapus semua di bawah gading.dev/media/ di Cloudinary, terus upload semua gambar di public/media, 7 sekaligus. Banner di production di-serve dari situ; di dev langsung dari public/media.'
+    en: 'Run by hand. Deletes everything under halosyahrul.com/media/ on Cloudinary, then uploads every image in public/media, 7 at a time. Banners are served from there in production; in dev they load from public/media directly.',
+    id: 'Dijalanin manual. Hapus semua di bawah halosyahrul.com/media/ di Cloudinary, terus upload semua gambar di public/media, 7 sekaligus. Banner di production di-serve dari situ; di dev langsung dari public/media.'
   },
   wfLighthouse: {
-    en: 'Run by hand. Fetches PageSpeed reports for gading.dev as SVG, desktop and mobile, into public/media/web-reports/pagespeed and commits them.',
-    id: 'Dijalanin manual. Ambil report PageSpeed buat gading.dev dalam bentuk SVG, desktop dan mobile, ke public/media/web-reports/pagespeed terus di-commit.'
+    en: 'Run by hand. Fetches PageSpeed reports for halosyahrul.com as SVG, desktop and mobile, into public/media/web-reports/pagespeed and commits them.',
+    id: 'Dijalanin manual. Ambil report PageSpeed buat halosyahrul.com dalam bentuk SVG, desktop dan mobile, ke public/media/web-reports/pagespeed terus di-commit.'
   },
   wfRevalidation: {
     en: 'Run by hand. Runs src/scripts/app:revalidate.ts, which reads every path from sitemap.xml and calls /api/revalidate with them. That route does not exist in src/app today, so this one is a leftover until it comes back.',

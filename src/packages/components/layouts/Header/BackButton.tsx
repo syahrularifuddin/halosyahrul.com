@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 
 import useBlogContentLanguages from '@/modules/Blog/hooks/useBlogContentLanguages';
 
+import { ISLAND_BUTTON } from './Menu';
+
 export default function BackButton() {
   const router = useRouter();
 
@@ -16,7 +18,7 @@ export default function BackButton() {
     <button
       type="button"
       onClick={router.back}
-      className="grid h-[38px] w-[38px] shrink-0 cursor-pointer place-items-center rounded-full floating-glass transition-transform duration-200 hover:scale-105"
+      className={ISLAND_BUTTON}
       aria-label="Back"
     >
       <ChevronLeft className="h-[18px] w-[18px]" />

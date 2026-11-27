@@ -27,7 +27,7 @@ interface Line {
 }
 
 const POSTS_LISTED = 5;
-const PROMPT_CLASS = 'text-[#5CC7B8]';
+const PROMPT_CLASS = 'text-[#F29A6B]';
 
 let lineId = 0;
 function line(kind: Line['kind'], text = ''): Line {
@@ -160,7 +160,7 @@ function HeroTerminal({ lang, currently, className }: Props) {
   return (
     <div
       className={cn(
-        'hero-terminal flex h-[184px] w-[292px] max-w-full lg:h-[150px] lg:w-[264px] cursor-text flex-col rounded-[14px] bg-terminal px-4 py-3 font-mono text-[12.5px] leading-[1.7] text-[#F3ECE2] shadow-soft',
+        'hero-terminal flex h-[184px] w-[292px] max-w-full lg:h-[150px] lg:w-[264px] cursor-text flex-col rounded-[14px] bg-terminal px-4 py-3 font-mono text-[12.5px] leading-[1.7] text-[#E9F0EA] shadow-soft',
         className
       )}
       onClick={() => inputRef.current?.focus({ preventScroll: true })}
@@ -185,7 +185,7 @@ function HeroTerminal({ lang, currently, className }: Props) {
           autoCorrect="off"
           spellCheck={false}
           enterKeyHint="send"
-          className="min-w-0 flex-1 bg-transparent text-[16px] text-[#F3ECE2] caret-[#5CC7B8] outline-none placeholder:text-[#A89C8E] sm:text-[12.5px]"
+          className="min-w-0 flex-1 bg-transparent text-[16px] text-[#E9F0EA] caret-[#F29A6B] outline-none placeholder:text-[#9AA89F] sm:text-[12.5px]"
         />
       </form>
     </div>
@@ -204,11 +204,11 @@ function TerminalLine({ line: item, moodText, asUsual }: { line: Line; moodText:
     return (
       <div>
         {moodText}
-        <span className="text-[#A89C8E]"> {asUsual}</span>
+        <span className="text-[#9AA89F]"> {asUsual}</span>
       </div>
     );
   }
-  return <div className={cn('whitespace-pre-wrap break-words', item.kind === 'muted' && 'text-[#A89C8E]')}>{item.text}</div>;
+  return <div className={cn('whitespace-pre-wrap break-words', item.kind === 'muted' && 'text-[#9AA89F]')}>{item.text}</div>;
 }
 
 export default HeroTerminal;

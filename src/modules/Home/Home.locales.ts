@@ -46,10 +46,6 @@ const withHomeLocales = createContentLocales({
     en: 'Indonesia, WIB',
     id: 'Indonesia, WIB'
   },
-  doodle: {
-    en: 'it\'s me, hi!',
-    id: 'it\'s me, hi!'
-  },
   buildingTitle: {
     en: 'Things I\'m building',
     id: 'Yang sedang saya bangun'
@@ -65,10 +61,6 @@ const withHomeLocales = createContentLocales({
   writingTitle: {
     en: 'Latest writing',
     id: 'Tulisan terbaru'
-  },
-  writingHand: {
-    en: 'fresh scars',
-    id: 'fresh scars'
   },
   writingDesc: {
     en: 'Notes from things that worked, and more from things that didn\'t.',

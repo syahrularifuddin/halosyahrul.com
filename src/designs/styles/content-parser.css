@@ -5,20 +5,20 @@
   /* typography plugin colours, bound to the active theme */
   --tw-prose-body: var(--color-base-content);
   --tw-prose-headings: var(--color-base-content);
-  --tw-prose-lead: var(--gd-muted);
+  --tw-prose-lead: var(--hs-muted);
   --tw-prose-links: var(--color-primary);
   --tw-prose-bold: var(--color-base-content);
-  --tw-prose-counters: var(--gd-muted);
-  --tw-prose-bullets: var(--gd-muted);
-  --tw-prose-hr: var(--gd-line);
+  --tw-prose-counters: var(--hs-muted);
+  --tw-prose-bullets: var(--hs-muted);
+  --tw-prose-hr: var(--hs-line);
   --tw-prose-quotes: var(--color-base-content);
   --tw-prose-quote-borders: var(--color-primary);
-  --tw-prose-captions: var(--gd-muted);
+  --tw-prose-captions: var(--hs-muted);
   --tw-prose-code: var(--color-base-content);
   --tw-prose-pre-code: var(--foreground);
-  --tw-prose-pre-bg: var(--gd-terminal);
-  --tw-prose-th-borders: var(--gd-line);
-  --tw-prose-td-borders: var(--gd-line);
+  --tw-prose-pre-bg: var(--hs-terminal);
+  --tw-prose-th-borders: var(--hs-line);
+  --tw-prose-td-borders: var(--hs-line);
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);

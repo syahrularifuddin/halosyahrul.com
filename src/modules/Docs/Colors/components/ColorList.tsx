@@ -36,7 +36,7 @@ const colorGroups = [
       { name: 'teal-soft', className: 'bg-teal-soft', textColorClassName: 'text-teal' },
       { name: 'rose-soft', className: 'bg-rose-soft', textColorClassName: 'text-rose' },
       { name: 'lilac-soft', className: 'bg-lilac-soft', textColorClassName: 'text-lilac' },
-      { name: 'terminal', className: 'bg-terminal', textColorClassName: 'text-[#F3ECE2]' }
+      { name: 'terminal', className: 'bg-terminal', textColorClassName: 'text-[#E9F0EA]' }
     ]
   },
   {

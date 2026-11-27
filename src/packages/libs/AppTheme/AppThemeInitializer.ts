@@ -11,7 +11,7 @@ function AppThemeInitializer() {
   useEffect(() => {
     /**
      * The theme attribute must live on <html>: daisyUI paints the page canvas
-     * from `:root` and the `dark:` variant is bound to `[data-theme="gading-dark"]`.
+     * from `:root` and the `dark:` variant is bound to `[data-theme="halo-dark"]`.
      * Keeping it on <body> left <html> following the OS preference, which mixed
      * dark and light surfaces inside the same page.
      */

@@ -8,7 +8,6 @@ date: 2026-11-23
 description: 'The first post on halosyahrul.com.'
 keywords: 'hello world, halo syahrul, first post'
 tags: ['life']
-image: '/media/default-banners/0.jpg'
 ---
 
 Hello, and welcome to my site.

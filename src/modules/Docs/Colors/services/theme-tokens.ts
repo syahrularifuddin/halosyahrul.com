@@ -1,7 +1,7 @@
 import Fs from 'fs/promises';
 import path from 'path';
 
-export type ThemeName = 'gading-light' | 'gading-dark';
+export type ThemeName = 'halo-light' | 'halo-dark';
 export type ThemeTokens = Record<string, string>;
 
 const GLOBALS_CSS = path.join(process.cwd(), 'src', 'designs', 'styles', 'globals.css');
@@ -22,7 +22,7 @@ export async function readThemeTokens(): Promise<Record<ThemeName, ThemeTokens>>
     }
     return tokens;
   };
-  return { 'gading-light': read('gading-light'), 'gading-dark': read('gading-dark') };
+  return { 'halo-light': read('halo-light'), 'halo-dark': read('halo-dark') };
 }
 
 function channel(value: number) {

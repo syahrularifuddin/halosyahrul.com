@@ -8,18 +8,9 @@
     @apply w-full max-w-[1120px] mx-auto px-5 sm:px-10;
   }
 
-  /* default (image-less) page banner: the avatar gradient of the Home hero, spread wide */
-  .soft-gradient {
-    background-color: var(--color-base-100);
-    background-image:
-      radial-gradient(at 12% 20%, color-mix(in srgb, var(--gd-brand-soft) 90%, transparent) 0px, transparent 55%),
-      radial-gradient(at 88% 30%, color-mix(in srgb, var(--gd-lilac-soft) 90%, transparent) 0px, transparent 55%),
-      radial-gradient(at 50% 100%, color-mix(in srgb, var(--gd-teal-soft) 70%, transparent) 0px, transparent 60%);
-  }
-
-  .text-2xs {
-    font-size: 0.625rem;
-    line-height: 0.65rem;
+  /* content that sits on the bottom edge of a green panel: half on it, half on the page */
+  .on-panel-edge {
+    @apply relative z-10 -mt-20 px-4 sm:px-8 lg:-mt-24 lg:px-12;
   }
 
   .liquid-glass {
@@ -31,23 +22,13 @@
     box-shadow: var(--glass-inset-shadow);
   }
 
-  .liquid-glass-shadow {
-    backdrop-filter: blur(var(--glass-blur)) saturate(150%);
-    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(150%);
-    border: 1px solid var(--glass-border);
-    background-color: var(--glass-bg);
-    color: var(--glass-text);
-    box-shadow: var(--glass-inset-shadow), var(--glass-shadow);
-  }
-
-  /* floating header pills and circles: the same frost the old full-width header bar had
-     (base-100 at 85% + 12px blur), so they read as floating over any content */
+  /* the header island and the phone tab bar: frosted, so they read as floating over any content */
   .floating-glass {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     background-color: color-mix(in srgb, var(--color-base-100) 85%, transparent);
-    border: 1px solid var(--gd-line);
-    box-shadow: var(--gd-shadow);
+    border: 1px solid var(--hs-line);
+    box-shadow: var(--hs-shadow);
   }
 
   .theme-card {
@@ -56,54 +37,6 @@
     border: 1px solid var(--card-border);
     background-color: var(--card-bg);
     box-shadow: var(--card-inset-shadow), var(--card-shadow);
-  }
-
-  /* Text shadow utilities for better contrast on liquid glass */
-  .text-shadow {
-    text-shadow: 1px 1px 2px color-mix(in srgb, var(--color-base-100) 30%, transparent);
-  }
-
-  .text-shadow-lg {
-    text-shadow: 2px 2px 4px color-mix(in srgb, var(--color-base-100) 40%, transparent),
-                 1px 1px 2px color-mix(in srgb, var(--color-base-100) 20%, transparent);
-  }
-
-  /* Text stroke utilities for enhanced readability */
-  .text-stroke {
-    -webkit-text-stroke: 0.5px color-mix(in srgb, var(--color-base-100) 50%, transparent);
-    text-stroke: 0.5px color-mix(in srgb, var(--color-base-100) 50%, transparent);
-  }
-
-  .text-stroke-light {
-    -webkit-text-stroke: 0.3px color-mix(in srgb, var(--color-base-content) 70%, transparent);
-    text-stroke: 0.3px color-mix(in srgb, var(--color-base-content) 70%, transparent);
-  }
-
-  /* Combined text contrast utilities */
-  .text-contrast {
-    text-shadow: 1px 1px 2px color-mix(in srgb, var(--color-base-100) 30%, transparent);
-    -webkit-text-stroke: 0.3px color-mix(in srgb, var(--color-base-100) 20%, transparent);
-    text-stroke: 0.3px color-mix(in srgb, var(--color-base-100) 20%, transparent);
-  }
-
-  .text-contrast-light {
-    text-shadow: 1px 1px 3px color-mix(in srgb, var(--color-base-content) 50%, transparent),
-                 0px 0px 8px color-mix(in srgb, var(--color-base-content) 30%, transparent);
-    -webkit-text-stroke: 0.5px color-mix(in srgb, var(--color-base-content) 40%, transparent);
-    text-stroke: 0.5px color-mix(in srgb, var(--color-base-content) 40%, transparent);
-  }
-
-  /*
-   * Driven by theme tokens instead of a `[data-theme="dark"]` descendant rule,
-   * so the footer surface always matches the theme in use — including the
-   * "system" theme, where no `data-theme` attribute is present at all.
-   */
-  .footer-custom {
-    @apply relative mt-14 border-t;
-    border-color: var(--footer-border);
-    background-color: var(--footer-bg);
-    backdrop-filter: blur(var(--footer-blur)) saturate(150%);
-    -webkit-backdrop-filter: blur(var(--footer-blur)) saturate(150%);
   }
 
   /*
@@ -116,7 +49,7 @@
 
   .lift:hover,
   .lift:focus-within {
-    box-shadow: var(--gd-shadow-lift);
+    box-shadow: var(--hs-shadow-lift);
   }
 
   @media (prefers-reduced-motion: no-preference) {

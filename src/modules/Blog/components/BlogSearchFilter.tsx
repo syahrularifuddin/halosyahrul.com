@@ -9,7 +9,7 @@ import BlogCardList from '@/modules/Blog/components/CardList';
 import FeaturedHero from '@/modules/Blog/components/FeaturedHero';
 import { matchesPostQuery } from '@/modules/Blog/utils/search';
 import type { ContentMeta } from '@/modules/Content/services/content-parser';
-import Banner from '@/packages/components/layouts/Header/Banner';
+import PageHead from '@/packages/components/layouts/PageHead';
 import range from '@/packages/utils/helpers/range';
 
 interface Props {
@@ -187,7 +187,7 @@ function BlogSearchFilter({ blogs, initialPage = 1, localeDesc }: Props) {
             disabled={currentPage === 1}
             aria-label="Prev page"
             className={cn([
-              'w-9 h-9 flex items-center justify-center text-base rounded-full transition-all duration-300 border border-transparent',
+              'w-9 h-9 flex items-center justify-center text-base rounded-xl transition-all duration-300 border border-transparent',
               currentPage === 1
                 ? 'opacity-30 cursor-not-allowed'
                 : 'hover:outline outline-primary dark:outline-accent cursor-pointer'
@@ -202,9 +202,9 @@ function BlogSearchFilter({ blogs, initialPage = 1, localeDesc }: Props) {
               onClick={() => handlePageChange(page)}
               aria-label={`Go to page ${page}`}
               className={cn([
-                'w-9 h-9 flex items-center justify-center text-base rounded-full transition-all duration-300 mx-1 border border-transparent font-medium',
+                'w-9 h-9 flex items-center justify-center text-base rounded-xl transition-all duration-300 mx-1 border border-transparent font-medium',
                 currentPage === page
-                  ? 'shadow-lg bg-primary text-primary-content pointer-events-none scale-105'
+                  ? 'bg-base-content text-base-100 pointer-events-none'
                   : 'hover:outline outline-primary dark:outline-accent cursor-pointer text-base-content/85'
               ])}
             >
@@ -218,7 +218,7 @@ function BlogSearchFilter({ blogs, initialPage = 1, localeDesc }: Props) {
             disabled={currentPage === totalPages}
             aria-label="Next page"
             className={cn([
-              'w-9 h-9 flex items-center justify-center text-base rounded-full transition-all duration-300 border border-transparent',
+              'w-9 h-9 flex items-center justify-center text-base rounded-xl transition-all duration-300 border border-transparent',
               currentPage === totalPages
                 ? 'opacity-30 cursor-not-allowed'
                 : 'hover:outline outline-primary dark:outline-accent cursor-pointer'
@@ -231,160 +231,94 @@ function BlogSearchFilter({ blogs, initialPage = 1, localeDesc }: Props) {
     );
   };
 
+  const tagClassName = (isSelected: boolean) => cn([
+    'flex shrink-0 cursor-pointer items-center gap-1 rounded-xl border px-3.5 py-1.5 font-mono text-xs font-medium transition-colors duration-200 md:text-sm',
+    isSelected
+      ? 'border-hero-content bg-hero-content text-hero'
+      : 'border-hero-content/30 hover:bg-hero-content/10'
+  ]);
+  const arrowClassName = 'absolute z-10 grid h-8 w-8 cursor-pointer place-items-center rounded-xl bg-hero-content/10 transition-colors duration-200 hover:bg-hero-content/20';
+
   return (
-    <div className="w-full flex flex-col">
-      {/* CSS inject for hiding scrollbar */}
-      <style>{`
-        .no-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        .no-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
-
-      {/* Banner with Embedded Search and Tags */}
-      <Banner bgImage="/media/default-banners/5.jpg">
-        <section className="font-serif flex flex-col h-full items-center justify-center text-center">
-          <div className="base-container relative z-10 w-full max-w-3xl">
-            <div className="liquid-glass-shadow rounded-2xl p-6 md:p-8 flex flex-col items-center gap-4">
-              <h1 className="text-2xl md:text-4xl font-bold">
-                Blog
-              </h1>
-              <p className="text-base text-muted max-w-xl">
-                {localeDesc.desc}
-              </p>
-
-              {/* Premium Glassmorphic Search Bar inside the main banner card */}
-              <div className="w-full max-w-xl mt-4">
-                <div className="rounded-full p-0.5 bg-card border border-line flex items-center shadow-soft transition-all duration-300 focus-within:border-primary/60 focus-within:ring-2 focus-within:ring-primary/15">
-                  <Search className="w-5 h-5 text-muted ml-4 flex-shrink-0" />
-                  <input
-                    type="text"
-                    placeholder={localeDesc.searchPlaceholder}
-                    value={searchQuery}
-                    onChange={(e) => handleSearchChange(e.target.value)}
-                    className="input input-ghost w-full focus:outline-none focus:bg-transparent text-base-content placeholder:text-muted text-base border-none bg-transparent h-11 px-3 focus:ring-0 focus:border-none outline-none"
-                  />
-                  {searchQuery && (
-                    <button
-                      onClick={handleClearSearch}
-                      className="btn btn-ghost btn-circle btn-sm mr-2 text-muted hover:text-base-content flex-shrink-0"
-                      aria-label="Clear search"
-                    >
-                      <X className="w-4 h-4" />
-                    </button>
-                  )}
-                </div>
-              </div>
-
-              {/* Horizontal Scrollable Tag Pills inside the main banner card with Arrow Navigation */}
-              <div className="relative w-full max-w-2xl mt-2 flex items-center px-9">
-                {/* Left Navigation Arrow */}
-                <button
-                  type="button"
-                  onClick={() => handleScroll(-180)}
-                  className="absolute left-0 z-10 p-1.5 rounded-full bg-card hover:bg-brand-soft border border-line text-base-content cursor-pointer transition-all duration-300 shadow-soft flex items-center justify-center hover:scale-105"
-                  aria-label="Scroll tags left"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-
-                {/* Scrollable Tags Container (Always starts at scrollLeft = 0) */}
-                <div
-                  ref={scrollContainerRef}
-                  className="w-full flex flex-nowrap overflow-x-auto gap-2 py-1 no-scrollbar scroll-smooth justify-start"
-                >
-                  <button
-                    onClick={() => handleTagClick(null)}
-                    className={cn([
-                      'px-4 py-1.5 font-mono text-xs md:text-sm rounded-full transition-all duration-300 border flex-shrink-0 font-medium',
-                      !selectedTag
-                        ? 'bg-brand-soft text-brand border-brand/30 shadow-sm'
-                        : 'bg-card text-muted border-line hover:text-base-content cursor-pointer'
-                    ])}
-                  >
-                    {localeDesc.allTags}
-                  </button>
-                  <button
-                    onClick={() => handleTagClick('featured')}
-                    className={cn([
-                      'px-4 py-1.5 font-mono text-xs md:text-sm rounded-full transition-all duration-300 border flex-shrink-0 font-medium flex items-center gap-1',
-                      selectedTag === 'featured'
-                        ? 'bg-brand-soft text-brand border-brand/40 shadow-sm font-bold'
-                        : 'bg-card text-muted border-line hover:text-base-content cursor-pointer'
-                    ])}
-                  >
-                    <Star className="w-3 h-3 fill-current" />
-                    Featured
-                  </button>
-                  {allTags.map((tag) => (
-                    <button
-                      key={tag}
-                      onClick={() => handleTagClick(tag)}
-                      className={cn([
-                        'px-4 py-1.5 font-mono text-xs md:text-sm rounded-full transition-all duration-300 border flex-shrink-0 font-medium',
-                        selectedTag === tag
-                          ? 'bg-brand-soft text-brand border-brand/30 shadow-sm'
-                          : 'bg-card text-muted border-line hover:text-base-content cursor-pointer'
-                      ])}
-                    >
-                      #{tag}
-                    </button>
-                  ))}
-                </div>
-
-                {/* Right Navigation Arrow */}
-                <button
-                  type="button"
-                  onClick={() => handleScroll(180)}
-                  className="absolute right-0 z-10 p-1.5 rounded-full bg-card hover:bg-brand-soft border border-line text-base-content cursor-pointer transition-all duration-300 shadow-soft flex items-center justify-center hover:scale-105"
-                  aria-label="Scroll tags right"
-                >
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
-      </Banner>
-
-      {/* Blog Cards Grid */}
-      {filteredBlogs.length > 0 ? (
-        <div className="flex flex-col flex-1">
-          {showHero && heroBlog && (
-            <FeaturedHero
-              className="-mt-14 z-20"
-              blog={heroBlog}
-              readLabel={localeDesc.readFeatured}
-            />
-          )}
-          <BlogCardList className={showHero ? 'pt-8' : '-mt-14 z-20'} contents={pagedBlogs} />
-          {totalPages > 1 && (
-            <div className="mt-8 mb-12 text-center">
-              <h4 className="mb-3 text-sm text-base-content/50">
-                Page {currentPage} of {totalPages}
-              </h4>
-              {renderPagination()}
-            </div>
-          )}
-        </div>
-      ) : (
-        <div className="text-center py-20 px-4 z-10 flex-1">
-          <div className="max-w-md mx-auto p-8 rounded-3xl bg-card border border-line shadow-soft">
-            <p className="text-base-content/80 text-base font-medium">
-              {localeDesc.emptyState}
-            </p>
+    <div className="flex w-full flex-col">
+      {/* the panel holds the search field and the tags; the posts sit on its bottom edge */}
+      <PageHead overlap title="Blog" description={localeDesc.desc}>
+        <div className="mt-7 flex max-w-xl items-center rounded-2xl bg-hero-content text-hero focus-within:ring-2 focus-within:ring-hero-note">
+          <Search aria-hidden className="ml-4 h-5 w-5 shrink-0 opacity-60" />
+          <input
+            type="text"
+            placeholder={localeDesc.searchPlaceholder}
+            aria-label={localeDesc.searchPlaceholder}
+            value={searchQuery}
+            onChange={(e) => handleSearchChange(e.target.value)}
+            className="h-12 w-full min-w-0 bg-transparent px-3 text-base outline-none placeholder:text-hero/60"
+          />
+          {searchQuery && (
             <button
-              onClick={handleResetAll}
-              className="btn btn-outline btn-primary mt-5 btn-sm rounded-full px-5 cursor-pointer font-semibold"
+              onClick={handleClearSearch}
+              className="mr-2 grid h-8 w-8 shrink-0 cursor-pointer place-items-center rounded-xl hover:bg-hero/10"
+              aria-label="Clear search"
             >
-              {localeDesc.clearSearch}
+              <X className="h-4 w-4" />
             </button>
-          </div>
+          )}
         </div>
-      )}
+
+        <div className="relative mt-4 flex max-w-2xl items-center px-10">
+          <button type="button" onClick={() => handleScroll(-180)} className={`${arrowClassName} left-0`} aria-label="Scroll tags left">
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+          <div
+            ref={scrollContainerRef}
+            className="flex w-full flex-nowrap gap-2 overflow-x-auto scroll-smooth py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            <button onClick={() => handleTagClick(null)} className={tagClassName(!selectedTag)}>
+              {localeDesc.allTags}
+            </button>
+            <button onClick={() => handleTagClick('featured')} className={tagClassName(selectedTag === 'featured')}>
+              <Star className="h-3 w-3 fill-current" />
+              Featured
+            </button>
+            {allTags.map((tag) => (
+              <button key={tag} onClick={() => handleTagClick(tag)} className={tagClassName(selectedTag === tag)}>
+                #{tag}
+              </button>
+            ))}
+          </div>
+          <button type="button" onClick={() => handleScroll(180)} className={`${arrowClassName} right-0`} aria-label="Scroll tags right">
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        </div>
+      </PageHead>
+
+      <div className="wide-container">
+        <div className="on-panel-edge flex flex-col gap-6">
+          {filteredBlogs.length > 0 ? (
+            <>
+              {showHero && heroBlog && <FeaturedHero blog={heroBlog} readLabel={localeDesc.readFeatured} />}
+              <BlogCardList contents={pagedBlogs} />
+              {totalPages > 1 && (
+                <div className="mb-4 mt-2 text-center">
+                  <h4 className="mb-3 text-sm text-muted">
+                    Page {currentPage} of {totalPages}
+                  </h4>
+                  {renderPagination()}
+                </div>
+              )}
+            </>
+          ) : (
+            <div className="mx-auto w-full max-w-md rounded-[28px] bg-card p-8 text-center shadow-soft">
+              <p className="font-medium">{localeDesc.emptyState}</p>
+              <button
+                onClick={handleResetAll}
+                className="mt-5 cursor-pointer rounded-2xl bg-base-content px-5 py-2.5 text-sm font-semibold text-base-100"
+              >
+                {localeDesc.clearSearch}
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

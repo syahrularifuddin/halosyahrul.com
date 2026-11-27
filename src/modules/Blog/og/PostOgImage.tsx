@@ -5,7 +5,7 @@ import { getContent } from '@/modules/Content/services/content-parser';
 import { I18nLocales } from '@/packages/libs/I18n/interface';
 
 import { keepLastWordsTogether, loadBanner, loadOgAssets, OG_COLORS } from './assets';
-import { Banner, layer, Lockup, MonoText, TagBadges, Title, Wave } from './pieces';
+import { Banner, layer, Lockup, MonoText, Swipe, TagBadges, Title } from './pieces';
 
 /** link card, 1.91:1; also what Twitter and Facebook crawl */
 export const OG_SIZE = { width: 1200, height: 630 };
@@ -19,14 +19,14 @@ export const SHARE_SIZES: Record<ShareFormat, { width: number; height: number }>
   '1x1': { width: 1080, height: 1080 }
 };
 
-const MUTED = 'rgba(243,236,226,0.72)';
+const MUTED = 'rgba(244,247,240,0.78)';
 
 interface PostCard {
   title: string;
   description: string;
   tags: string[];
   readTime: string;
-  banner: string;
+  banner: string | null;
   avatar: string;
 }
 
@@ -58,15 +58,16 @@ function OgLayout({ card }: { card: PostCard }) {
         src={card.banner}
         width={width}
         height={height}
-        fade="linear-gradient(90deg, rgba(23,19,15,0.97) 0%, rgba(23,19,15,0.93) 50%, rgba(23,19,15,0.62) 78%, rgba(23,19,15,0.3) 100%)"
+        fade="linear-gradient(90deg, rgba(20,92,61,0.97) 0%, rgba(20,92,61,0.93) 50%, rgba(20,92,61,0.62) 78%, rgba(20,92,61,0.3) 100%)"
       />
       {/* bottom to top: the title block sits here */}
-      <div style={{ ...layer(width, height), backgroundImage: 'linear-gradient(0deg, rgba(23,19,15,0.98) 0%, rgba(23,19,15,0.88) 38%, rgba(23,19,15,0.4) 68%, rgba(23,19,15,0) 90%)' }} />
+      {card.banner && <div style={{ ...layer(width, height), backgroundImage: 'linear-gradient(0deg, rgba(20,92,61,0.98) 0%, rgba(20,92,61,0.88) 38%, rgba(20,92,61,0.4) 68%, rgba(20,92,61,0) 90%)' }} />}
       <div style={{ ...layer(width, height), padding: '0 72px 60px', flexDirection: 'column', justifyContent: 'flex-end' }}>
-        <div style={{ display: 'flex', maxWidth: 960 }}>
+        {/* without a cover the site mark takes the right side */}
+        <div style={{ display: 'flex', maxWidth: card.banner ? 960 : 720 }}>
           <Title text={card.title} fontSize={titleSize(card.title, [[72, 52]], 58)} maxLines={3} letterSpacing={-1} lineHeight={1.12} />
         </div>
-        <Wave width={132} marginTop={22} />
+        <Swipe width={132} marginTop={22} />
         <div style={{ display: 'flex', marginTop: 30 }}>
           <Lockup size={60} avatar={card.avatar} nameSize={28} domainSize={22} />
         </div>
@@ -84,7 +85,7 @@ function StoryLayout({ card }: { card: PostCard }) {
         src={card.banner}
         width={width}
         height={1000}
-        fade="linear-gradient(180deg, rgba(23,19,15,0.2) 0%, rgba(23,19,15,0.35) 30%, rgba(23,19,15,0.88) 62%, #17130F 92%)"
+        fade="linear-gradient(180deg, rgba(20,92,61,0.2) 0%, rgba(20,92,61,0.35) 30%, rgba(20,92,61,0.88) 62%, #145C3D 92%)"
       />
       <div style={{ position: 'absolute', top: 270, left: 88, display: 'flex' }}>
         <Lockup size={84} avatar={card.avatar} nameSize={36} domainSize={26} pill />
@@ -92,9 +93,9 @@ function StoryLayout({ card }: { card: PostCard }) {
       <div style={{ position: 'absolute', left: 88, right: 88, bottom: 560, display: 'flex', flexDirection: 'column' }}>
         <TagBadges tags={card.tags} fontSize={28} maxWidth={904} />
         <Title text={card.title} fontSize={titleSize(card.title, [[80, 66], [60, 72]], 80)} maxLines={5} marginTop={card.tags.length ? 34 : 0} />
-        <Wave width={176} marginTop={36} />
+        <Swipe width={176} marginTop={36} />
         {card.description && <MonoText text={card.description} fontSize={32} marginTop={32} color={MUTED} maxLines={7} />}
-        <MonoText text={card.readTime} fontSize={30} marginTop={40} color={OG_COLORS.amber} lineHeight={1.2} />
+        <MonoText text={card.readTime} fontSize={30} marginTop={40} color={OG_COLORS.note} lineHeight={1.2} />
       </div>
     </div>
   );
@@ -109,7 +110,7 @@ function FeedLayout({ card }: { card: PostCard }) {
         src={card.banner}
         width={width}
         height={820}
-        fade="linear-gradient(180deg, rgba(23,19,15,0.2) 0%, rgba(23,19,15,0.35) 28%, rgba(23,19,15,0.75) 55%, rgba(23,19,15,0.95) 75%, #17130F 96%)"
+        fade="linear-gradient(180deg, rgba(20,92,61,0.2) 0%, rgba(20,92,61,0.35) 28%, rgba(20,92,61,0.75) 55%, rgba(20,92,61,0.95) 75%, #145C3D 96%)"
       />
       <div style={{ position: 'absolute', top: 72, left: 80, display: 'flex' }}>
         <Lockup size={72} avatar={card.avatar} nameSize={32} domainSize={23} pill />
@@ -117,9 +118,9 @@ function FeedLayout({ card }: { card: PostCard }) {
       <div style={{ position: 'absolute', left: 80, right: 80, bottom: 80, display: 'flex', flexDirection: 'column' }}>
         <TagBadges tags={card.tags} fontSize={26} maxWidth={920} />
         <Title text={card.title} fontSize={titleSize(card.title, [[80, 58], [60, 64]], 70)} maxLines={4} marginTop={card.tags.length ? 28 : 0} />
-        <Wave width={150} marginTop={28} />
+        <Swipe width={150} marginTop={28} />
         {card.description && <MonoText text={card.description} fontSize={28} marginTop={26} color={MUTED} maxLines={3} />}
-        <MonoText text={card.readTime} fontSize={27} marginTop={30} color={OG_COLORS.amber} lineHeight={1.2} />
+        <MonoText text={card.readTime} fontSize={27} marginTop={30} color={OG_COLORS.note} lineHeight={1.2} />
       </div>
     </div>
   );
@@ -134,7 +135,7 @@ function SquareLayout({ card }: { card: PostCard }) {
         src={card.banner}
         width={width}
         height={height}
-        fade="linear-gradient(0deg, #17130F 0%, rgba(23,19,15,0.95) 45%, rgba(23,19,15,0.6) 75%, rgba(23,19,15,0.35) 100%)"
+        fade="linear-gradient(0deg, #145C3D 0%, rgba(20,92,61,0.95) 45%, rgba(20,92,61,0.6) 75%, rgba(20,92,61,0.35) 100%)"
       />
       <div style={{ position: 'absolute', top: 72, left: 80, display: 'flex' }}>
         <Lockup size={72} avatar={card.avatar} nameSize={32} domainSize={23} pill />
@@ -142,8 +143,8 @@ function SquareLayout({ card }: { card: PostCard }) {
       <div style={{ position: 'absolute', left: 80, right: 80, bottom: 80, display: 'flex', flexDirection: 'column' }}>
         <TagBadges tags={card.tags} fontSize={26} maxWidth={920} />
         <Title text={card.title} fontSize={titleSize(card.title, [[80, 60], [60, 66]], 74)} maxLines={4} marginTop={card.tags.length ? 28 : 0} />
-        <Wave width={150} marginTop={30} />
-        <MonoText text={card.readTime} fontSize={28} marginTop={30} color={OG_COLORS.amber} lineHeight={1.2} />
+        <Swipe width={150} marginTop={30} />
+        <MonoText text={card.readTime} fontSize={28} marginTop={30} color={OG_COLORS.note} lineHeight={1.2} />
       </div>
     </div>
   );

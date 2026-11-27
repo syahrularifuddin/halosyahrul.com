@@ -3,8 +3,8 @@ import createContentLocales from '@/packages/libs/I18n/locales';
 /** labels shared by every docs page: the docs tab row and the page eyebrow */
 const withDocsLocales = createContentLocales({
   eyebrow: {
-    en: 'behind the Hideout',
-    id: 'di balik Hideout'
+    en: 'how this site works',
+    id: 'cara kerja situs ini'
   },
   navLabel: {
     en: 'Docs pages',

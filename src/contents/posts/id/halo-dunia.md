@@ -8,7 +8,6 @@ date: 2026-11-23
 description: 'Tulisan pertama di halosyahrul.com.'
 keywords: 'halo dunia, halo syahrul, tulisan pertama'
 tags: ['life']
-image: '/media/default-banners/0.jpg'
 ---
 
 Halo, dan selamat datang di situs saya.

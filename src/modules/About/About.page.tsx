@@ -1,10 +1,13 @@
+import Image from 'next/image';
+
 import { NextPageProps } from '@/@types/global';
+import { AUTHOR_NAME } from '@/configs/author';
 import ProfileInfo from '@/modules/About/components/ProfileInfo';
 import ContentParser from '@/modules/Content/components/ContentParser';
 import ContentInteraction from '@/modules/Content/components/Interaction';
 import { getContentMultiLanguage } from '@/modules/Content/services/content-parser';
 import HeroCard from '@/packages/components/base/Displays/HeroCard';
-import Banner from '@/packages/components/layouts/Header/Banner';
+import PageHead from '@/packages/components/layouts/PageHead';
 import { I18n } from '@/packages/libs/I18n/interface';
 import { getDefaultLanguage } from '@/packages/libs/I18n/utils';
 
@@ -22,32 +25,34 @@ async function AboutPage(props: NextPageProps) {
   const markdownContent = await getContentMultiLanguage('about', lang);
 
   return (
-    <div className="min-h-screen flex flex-col text-base-content">
-      <Banner
-        bgImage={markdownContent.meta.image}
+    <div className="flex min-h-screen flex-col text-base-content">
+      <PageHead
+        overlap
+        eyebrow={AUTHOR_NAME}
+        title={markdownContent.meta.title}
+        description={markdownContent.meta.description}
+        aside={
+          <Image
+            src="/media/authors/avatar.png"
+            alt={AUTHOR_NAME}
+            width={240}
+            height={240}
+            priority
+            className="h-[132px] w-[132px] justify-self-start rounded-[32px] border-[5px] border-card object-cover shadow-soft lg:h-[240px] lg:w-[240px] lg:justify-self-end lg:rounded-[44px] dark:border-[#1E2823]"
+          />
+        }
       >
-        <section className="font-serif flex flex-col h-full items-center justify-center text-center">
-          <div className="base-container relative z-10">
-            <div className="liquid-glass-shadow rounded-2xl p-8 -translate-y-6">
-              <h1 className="text-2xl md:text-4xl font-bold">
-                {markdownContent.meta.title}
-              </h1>
-              <p className="text-base sm:text-lg mt-4">
-                {markdownContent.meta.description}
-              </p>
-            </div>
-          </div>
-        </section>
-      </Banner>
+        <ProfileInfo />
+      </PageHead>
 
-      {/* Markdown Content */}
-      <section className="base-container py-6 -mt-28">
-        <HeroCard>
-          <ProfileInfo />
-          <ContentParser>
-            {markdownContent.content}
-          </ContentParser>
-        </HeroCard>
+      <section className="wide-container">
+        <div className="on-panel-edge">
+          <HeroCard className="mx-auto max-w-3xl">
+            <ContentParser>
+              {markdownContent.content}
+            </ContentParser>
+          </HeroCard>
+        </div>
       </section>
       <ContentInteraction
         path="about"

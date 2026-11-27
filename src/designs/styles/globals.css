@@ -13,7 +13,7 @@
  * (theme = "system"), matching daisyUI's own `:root:not([data-theme])` fallback.
  */
 @custom-variant dark {
-  &:where([data-theme="gading-dark"], [data-theme="gading-dark"] *) {
+  &:where([data-theme="halo-dark"], [data-theme="halo-dark"] *) {
     @slot;
   }
   @media (prefers-color-scheme: dark) {
@@ -24,41 +24,41 @@
 }
 
 @plugin "daisyui/theme" {
-  name: "gading-light";
+  name: "halo-light";
   default: true;
   color-scheme: "light";
 
   /* ─── Base: bg / card / line ─── */
-  --color-base-100: #FAF6EF;
-  --color-base-200: #F3EBDD;
-  --color-base-300: #ECE4D8;
-  --color-base-content: #2A2420;
+  --color-base-100: #F4F7F0;
+  --color-base-200: #E8EEE2;
+  --color-base-300: #DDE5D6;
+  --color-base-content: #15241C;
 
-  /* ─── Brand: amber accent, teal, lilac ─── */
-  --color-primary: #C9822E;
+  /* ─── Brand: leaf green, burnt orange, blue ─── */
+  --color-primary: #17794D;
   --color-primary-content: #FFFFFF;
 
-  --color-secondary: #2F9E8F;
+  --color-secondary: #A94511;
   --color-secondary-content: #FFFFFF;
 
-  --color-accent: #7C6CD9;
+  --color-accent: #2A63BD;
   --color-accent-content: #FFFFFF;
 
   /* ─── Neutral ─── */
-  --color-neutral: #2A2420;
-  --color-neutral-content: #F3ECE2;
+  --color-neutral: #15241C;
+  --color-neutral-content: #F4F7F0;
 
   /* ─── State ─── */
-  --color-info: #3B82C4;
+  --color-info: #2A63BD;
   --color-info-content: #FFFFFF;
 
-  --color-success: #2F9E8F;
+  --color-success: #17794D;
   --color-success-content: #FFFFFF;
 
-  --color-warning: #C9822E;
+  --color-warning: #A94511;
   --color-warning-content: #FFFFFF;
 
-  --color-error: #D9636B;
+  --color-error: #B53844;
   --color-error-content: #FFFFFF;
 
   /* ─── Misc ─── */
@@ -74,77 +74,78 @@
   --noise: 0;
 
   /* ─── Soft tokens (see SPEC: "soft + a little fun") ─── */
-  --gd-card: #FFFFFF;
-  --gd-line: #ECE4D8;
-  --gd-muted: #7A6F64;
-  --gd-brand-soft: #FBEBD3;
-  --gd-teal: #2F9E8F;
-  --gd-teal-soft: #DDF2EE;
-  --gd-rose: #D9636B;
-  --gd-rose-soft: #FBE3E3;
-  --gd-lilac: #7C6CD9;
-  --gd-lilac-soft: #ECE8FB;
-  --gd-terminal: #2A2420;
-  --gd-shadow: 0 1px 2px rgba(60, 40, 20, 0.04), 0 8px 24px rgba(60, 40, 20, 0.06);
-  --gd-shadow-lift: 0 16px 36px rgba(60, 40, 20, 0.13);
+  --hs-card: #FFFFFF;
+  --hs-line: #DDE5D6;
+  --hs-muted: #57665D;
+  --hs-brand-soft: #DCF0E3;
+  --hs-teal: #A94511;
+  --hs-teal-soft: #FBE6DA;
+  --hs-rose: #B53844;
+  --hs-rose-soft: #FBE3E3;
+  --hs-lilac: #2A63BD;
+  --hs-lilac-soft: #E1EAFA;
+  --hs-terminal: #15241C;
+  /* the hero and footer panel: deep leaf, with its own text, marker and hand-note colours */
+  --hs-hero: #145C3D;
+  --hs-hero-content: #F4F7F0;
+  --hs-hero-mark: #C2531B;
+  --hs-hero-note: #FFC79E;
+  --hs-shadow: 0 1px 2px rgba(20, 45, 30, 0.04), 0 8px 24px rgba(20, 45, 30, 0.06);
+  --hs-shadow-lift: 0 16px 36px rgba(20, 45, 30, 0.13);
 
-  /* ─── Surfaces used by .liquid-glass / .theme-card / footer ─── */
+  /* ─── Surfaces used by .liquid-glass / .theme-card ─── */
   --glass-bg: rgba(255, 255, 255, 0.88);
-  --glass-border: var(--gd-line);
+  --glass-border: var(--hs-line);
   --glass-text: var(--color-base-content);
-  --glass-shadow: var(--gd-shadow);
+  --glass-shadow: var(--hs-shadow);
   --glass-inset-shadow: none;
   --glass-blur: 12px;
 
-  --card-bg: var(--gd-card);
-  --card-border: var(--gd-line);
+  --card-bg: var(--hs-card);
+  --card-border: var(--hs-line);
   /* single layer on purpose: daisyUI splits comma separated token values */
-  --card-shadow: 0 8px 24px rgba(60, 40, 20, 0.06);
+  --card-shadow: 0 8px 24px rgba(20, 45, 30, 0.06);
   --card-inset-shadow: none;
   --card-blur: 0px;
-
-  --footer-bg: transparent;
-  --footer-border: var(--gd-line);
-  --footer-blur: 0px;
 }
 
 @plugin "daisyui/theme" {
-  name: "gading-dark";
+  name: "halo-dark";
   prefersdark: true;
   color-scheme: "dark";
 
   /* ─── Base: bg / card / line ─── */
-  --color-base-100: #17130F;
-  --color-base-200: #201B16;
-  --color-base-300: #2F2821;
-  --color-base-content: #F3ECE2;
+  --color-base-100: #0F1512;
+  --color-base-200: #161E19;
+  --color-base-300: #232D27;
+  --color-base-content: #E9F0EA;
 
-  /* ─── Brand: amber accent, teal, lilac ─── */
-  --color-primary: #E8A55A;
-  --color-primary-content: #17130F;
+  /* ─── Brand: leaf green, burnt orange, blue ─── */
+  --color-primary: #5FD39B;
+  --color-primary-content: #0F1512;
 
-  --color-secondary: #5CC7B8;
-  --color-secondary-content: #17130F;
+  --color-secondary: #F29A6B;
+  --color-secondary-content: #0F1512;
 
-  --color-accent: #A89CF0;
-  --color-accent-content: #17130F;
+  --color-accent: #8FB6F2;
+  --color-accent-content: #0F1512;
 
   /* ─── Neutral ─── */
-  --color-neutral: #F3ECE2;
-  --color-neutral-content: #17130F;
+  --color-neutral: #E9F0EA;
+  --color-neutral-content: #0F1512;
 
   /* ─── State ─── */
-  --color-info: #6FB0E8;
-  --color-info-content: #17130F;
+  --color-info: #8FB6F2;
+  --color-info-content: #0F1512;
 
-  --color-success: #5CC7B8;
-  --color-success-content: #17130F;
+  --color-success: #5FD39B;
+  --color-success-content: #0F1512;
 
-  --color-warning: #E8A55A;
-  --color-warning-content: #17130F;
+  --color-warning: #F29A6B;
+  --color-warning-content: #0F1512;
 
   --color-error: #E98A8F;
-  --color-error-content: #17130F;
+  --color-error-content: #0F1512;
 
   /* ─── Misc ─── */
   --radius-selector: 999px;
@@ -159,37 +160,37 @@
   --noise: 0;
 
   /* ─── Soft tokens ─── */
-  --gd-card: #201B16;
-  --gd-line: #2F2821;
-  --gd-muted: #A89C8E;
-  --gd-brand-soft: #3A2B1B;
-  --gd-teal: #5CC7B8;
-  --gd-teal-soft: #1C302C;
-  --gd-rose: #E98A8F;
-  --gd-rose-soft: #3A2224;
-  --gd-lilac: #A89CF0;
-  --gd-lilac-soft: #2A2640;
-  --gd-terminal: #0F0C0A;
-  --gd-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-  --gd-shadow-lift: 0 16px 36px rgba(0, 0, 0, 0.4);
+  --hs-card: #161E19;
+  --hs-line: #232D27;
+  --hs-muted: #9AA89F;
+  --hs-brand-soft: #173326;
+  --hs-teal: #F29A6B;
+  --hs-teal-soft: #3A2416;
+  --hs-rose: #E98A8F;
+  --hs-rose-soft: #3A2224;
+  --hs-lilac: #8FB6F2;
+  --hs-lilac-soft: #1B2A44;
+  --hs-terminal: #0A0F0C;
+  --hs-hero: #173326;
+  --hs-hero-content: #E9F0EA;
+  --hs-hero-mark: #C2531B;
+  --hs-hero-note: #F29A6B;
+  --hs-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  --hs-shadow-lift: 0 16px 36px rgba(0, 0, 0, 0.4);
 
-  /* ─── Surfaces used by .liquid-glass / .theme-card / footer ─── */
-  --glass-bg: rgba(32, 27, 22, 0.9);
-  --glass-border: var(--gd-line);
+  /* ─── Surfaces used by .liquid-glass / .theme-card ─── */
+  --glass-bg: rgba(22, 30, 25, 0.9);
+  --glass-border: var(--hs-line);
   --glass-text: var(--color-base-content);
-  --glass-shadow: var(--gd-shadow);
+  --glass-shadow: var(--hs-shadow);
   --glass-inset-shadow: none;
   --glass-blur: 12px;
 
-  --card-bg: var(--gd-card);
-  --card-border: var(--gd-line);
+  --card-bg: var(--hs-card);
+  --card-border: var(--hs-line);
   --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
   --card-inset-shadow: none;
   --card-blur: 0px;
-
-  --footer-bg: transparent;
-  --footer-border: var(--gd-line);
-  --footer-blur: 0px;
 }
 
 /*
@@ -198,34 +199,38 @@
  * active theme, so light/dark switching needs no `dark:` variants.
  */
 @theme inline {
-  --color-card: var(--gd-card);
-  --color-line: var(--gd-line);
-  --color-muted: var(--gd-muted);
+  --color-card: var(--hs-card);
+  --color-line: var(--hs-line);
+  --color-muted: var(--hs-muted);
   --color-brand: var(--color-primary);
-  --color-brand-soft: var(--gd-brand-soft);
-  --color-teal: var(--gd-teal);
-  --color-teal-soft: var(--gd-teal-soft);
-  --color-rose: var(--gd-rose);
-  --color-rose-soft: var(--gd-rose-soft);
-  --color-lilac: var(--gd-lilac);
-  --color-lilac-soft: var(--gd-lilac-soft);
-  --color-terminal: var(--gd-terminal);
+  --color-brand-soft: var(--hs-brand-soft);
+  --color-teal: var(--hs-teal);
+  --color-teal-soft: var(--hs-teal-soft);
+  --color-rose: var(--hs-rose);
+  --color-rose-soft: var(--hs-rose-soft);
+  --color-lilac: var(--hs-lilac);
+  --color-lilac-soft: var(--hs-lilac-soft);
+  --color-terminal: var(--hs-terminal);
+  --color-hero: var(--hs-hero);
+  --color-hero-content: var(--hs-hero-content);
+  --color-hero-mark: var(--hs-hero-mark);
+  --color-hero-note: var(--hs-hero-note);
 
-  --shadow-soft: var(--gd-shadow);
+  --shadow-soft: var(--hs-shadow);
 
-  --font-sans: var(--font-plus-jakarta-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
-  --font-hand: var(--font-caveat), cursive;
+  --font-sans: var(--ff-body), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--ff-display), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--ff-display), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--ff-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-hand: var(--ff-hand), cursive;
 }
 
-/* Height of the sticky Header (py + tallest pill): banners pull up by this to sit behind it */
-:root { --header-h: 70px; }
-@media (min-width: 48rem) { :root { --header-h: 90px; } }
+/* Height of the sticky Header (py + the island): banners pull up by this to sit behind it */
+:root { --header-h: 76px; }
+@media (min-width: 48rem) { :root { --header-h: 94px; } }
 
 body {
-  font-family: var(--font-plus-jakarta-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }
 
 @import "./custom-utilities";
@@ -268,13 +273,13 @@ body {
 /* hero terminal: its own thin scrollbar, the page never moves while typing */
 .hero-terminal-scroll {
   scrollbar-width: thin;
-  scrollbar-color: #4A3F37 transparent;
+  scrollbar-color: #3A4A40 transparent;
 }
 
 /* docs code snippets: the same thin terminal scrollbar, no track */
 .docs-code-scroll {
   scrollbar-width: thin;
-  scrollbar-color: #4A3F37 transparent;
+  scrollbar-color: #3A4A40 transparent;
 }
 .docs-code-scroll::-webkit-scrollbar {
   height: 6px;
@@ -284,7 +289,7 @@ body {
   background: transparent;
 }
 .docs-code-scroll::-webkit-scrollbar-thumb {
-  background-color: #4A3F37;
+  background-color: #3A4A40;
   border-radius: 9999px;
 }
 
@@ -334,7 +339,7 @@ body {
   width: 5px;
   height: 5px;
   border-radius: 999px;
-  background: var(--gd-muted);
+  background: var(--hs-muted);
   opacity: 0.6;
 }
 @media (prefers-reduced-motion: no-preference) {

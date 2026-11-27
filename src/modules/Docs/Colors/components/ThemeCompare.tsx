@@ -1,7 +1,7 @@
 import cn from '@/designs/utils/cn';
 import { contrastGrade, contrastRatio, ThemeName, ThemeTokens } from '@/modules/Docs/Colors/services/theme-tokens';
 
-const THEMES: ThemeName[] = ['gading-light', 'gading-dark'];
+const THEMES: ThemeName[] = ['halo-light', 'halo-dark'];
 
 interface SwatchProps {
   themes: Record<ThemeName, ThemeTokens>;
@@ -19,7 +19,7 @@ export function TokenCompare({ themes, tokens, utilities }: SwatchProps) {
     <div className="overflow-hidden rounded-[20px] bg-card shadow-soft">
       <div className="grid grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_minmax(0,1fr)] gap-3 border-b border-line px-4 py-3 font-mono text-xs text-muted sm:px-6">
         <span>token</span>
-        {THEMES.map((theme) => <span key={theme}>{theme.replace('gading-', '')}</span>)}
+        {THEMES.map((theme) => <span key={theme}>{theme.replace('halo-', '')}</span>)}
       </div>
       <ul>
         {tokens.map((token) => (
@@ -93,7 +93,7 @@ export function ContrastTable({ themes, pairs }: ContrastProps) {
                       {grade}
                     </span>
                   </div>
-                  <div className="font-mono text-[11px] text-muted">{theme.replace('gading-', '')}</div>
+                  <div className="font-mono text-[11px] text-muted">{theme.replace('halo-', '')}</div>
                 </div>
               );
             })}

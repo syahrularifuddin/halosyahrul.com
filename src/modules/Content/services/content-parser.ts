@@ -45,7 +45,7 @@ export interface ContentMeta {
   date: string;
   description: string;
   keywords: string;
-  image: string;
+  image?: string;
   tags: string[];
   /** shorter title for the share image, when the real one is too long for a card */
   ogTitle?: string;
