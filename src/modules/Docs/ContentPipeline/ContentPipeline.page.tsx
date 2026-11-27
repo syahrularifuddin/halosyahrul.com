@@ -2,10 +2,10 @@ import { NextPageProps } from '@/@types/global';
 import { BLOG_PAGINATION_LIMIT } from '@/configs/sites';
 import { SHARE_FORMATS, SHARE_SIZES } from '@/modules/Blog/og/PostOgImage';
 import { getAllBlogMeta } from '@/modules/Content/services/content-parser';
-import CodeSnippet from '@/modules/Docs/components/CodeSnippet';
-import DocsSection from '@/modules/Docs/components/DocsSection';
-import DocsShell from '@/modules/Docs/components/DocsShell';
 import withContentPipelineLocales from '@/modules/Docs/ContentPipeline/ContentPipeline.locales';
+import CodeSnippet from '@/modules/Docs/shared/CodeSnippet';
+import DocsSection from '@/modules/Docs/shared/DocsSection';
+import DocsShell from '@/modules/Docs/shared/DocsShell';
 import { I18nLocales } from '@/packages/libs/I18n/interface';
 import { getDefaultLanguage } from '@/packages/libs/I18n/utils';
 

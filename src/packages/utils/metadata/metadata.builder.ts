@@ -27,7 +27,7 @@ export function metadataBuilder({ meta, locale = 'en' }: IMetaBuilder) {
     title,
     slug,
     description = 'Personal site and blog of Syahrul Arifuddin.',
-    image = '/media/og/og-default-dark.png',
+    image = '/media/og/og-default.png',
     date = dt().format('YYYY-MM-DD'),
     keywords = '',
     tags = []

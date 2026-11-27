@@ -99,7 +99,7 @@ function ShareImageModal(props: Props) {
       aria-labelledby="share-image-title"
       onClose={onClose}
     >
-      <div className="modal-box bg-base-100 border border-[var(--gd-line)] shadow-2xl max-w-lg p-5 sm:p-6 motion-reduce:transition-none motion-reduce:animate-none">
+      <div className="modal-box bg-base-100 border border-[var(--hs-line)] shadow-2xl max-w-lg p-5 sm:p-6 motion-reduce:transition-none motion-reduce:animate-none">
         <div className="flex items-center justify-between gap-3">
           <h3 id="share-image-title" className="text-lg font-semibold">
             {locales.title}
@@ -122,7 +122,7 @@ function ShareImageModal(props: Props) {
                 data-umami-event={`content_share-image-size-${item.id}_${umamiSuffix}`}
                 className={cn([
                   'btn btn-sm font-medium border',
-                  active ? 'btn-primary' : 'btn-ghost border-[var(--gd-line)]'
+                  active ? 'btn-primary' : 'btn-ghost border-[var(--hs-line)]'
                 ])}
               >
                 {locales[item.id]}
@@ -133,7 +133,7 @@ function ShareImageModal(props: Props) {
 
         <div className="mt-4 flex justify-center">
           <div
-            className="relative overflow-hidden rounded-xl border border-[var(--gd-line)] bg-base-200 w-full"
+            className="relative overflow-hidden rounded-xl border border-[var(--hs-line)] bg-base-200 w-full"
             style={{
               aspectRatio: `${format.width} / ${format.height}`,
               // tall formats are capped by height so the buttons stay on screen
@@ -185,7 +185,7 @@ function ShareImageModal(props: Props) {
             className={cn([
               'btn whitespace-nowrap',
               file && 'col-span-2 sm:col-span-1',
-              isCopied ? 'btn-success' : 'btn-ghost border border-[var(--gd-line)]'
+              isCopied ? 'btn-success' : 'btn-ghost border border-[var(--hs-line)]'
             ])}
             data-umami-event={`content_share-image-copy-link_${umamiSuffix}`}
           >

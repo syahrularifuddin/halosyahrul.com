@@ -21,12 +21,12 @@ div.math-display {
   @apply overflow-x-auto mb-2 rounded-xl bg-base-200;
 }
 
-[data-theme="gading-dark"] div.math-display {
-  background-color: var(--gd-line);
+[data-theme="halo-dark"] div.math-display {
+  background-color: var(--hs-line);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) div.math-display {
-    background-color: var(--gd-line);
+    background-color: var(--hs-line);
   }
 }

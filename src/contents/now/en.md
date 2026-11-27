@@ -3,7 +3,6 @@ title: "Now"
 date: 2026-11-23
 description: "What I'm doing right now?"
 keywords: "now, now page, syahrul"
-image: "/media/default-banners/0.jpg"
 currently: "Setting up halosyahrul.com"
 ---
 

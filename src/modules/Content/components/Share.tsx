@@ -13,7 +13,6 @@ import IconTwitter from '@/designs/icons/logo/twitter.svg';
 import IconWhatsapp from '@/designs/icons/logo/whatsapp.svg';
 import cn from '@/designs/utils/cn';
 import { ContentMeta } from '@/modules/Content/services/content-parser';
-import Button from '@/packages/components/base/Buttons/Button';
 import useClipboard from '@/packages/hooks/useClipboard';
 import useLangugage from '@/packages/libs/I18n/i18n.client';
 import createContentLocales from '@/packages/libs/I18n/locales';
@@ -28,39 +27,34 @@ interface Props {
 }
 
 interface SocialShare {
-  color: string;
   label: string;
   logo: FunctionComponent<SVGProps<SVGSVGElement>>;
 };
 
+const SHARE_BUTTON = 'grid h-12 w-12 cursor-pointer place-items-center rounded-2xl bg-card text-base-content shadow-soft transition-transform duration-200 hover:-translate-y-1';
+
 const socialShares: SocialShare[] = [
   {
-    color: 'bg-[#1877F2] shadow-blue-500',
     label: 'Share on Facebook',
     logo: IconFacebook
   },
   {
-    color: 'bg-[#0077B5] shadow-blue-600',
     label: 'Share on Linkedin',
     logo: IconLinkedin
   },
   {
-    color: 'bg-[#1DA1F2] shadow-blue-400',
     logo: IconTwitter,
     label: 'Share on Twitter'
   },
   {
-    color: 'bg-[#36465D] shadow-gray-700',
     logo: IconTumblr,
     label: 'Share on Tumblr'
   },
   {
-    color: 'bg-[#25D366] shadow-green-500',
     logo: IconWhatsapp,
     label: 'Share on Whatsapp'
   },
   {
-    color: 'bg-[#26A5E4] shadow-sky-500',
     logo: IconTelegram,
     label: 'Share on Telegram'
   }
@@ -133,50 +127,43 @@ function ContentShare(props: Props) {
 
   return (
     <div className="mt-10 base-container">
-      <h4 className="text-center font-semibold mb-3">
+      <h4 className="mb-3 text-center font-hand text-[22px] text-brand">
         {locales.share}
       </h4>
-      <div className="relative flex justify-center items-center flex-wrap gap-2">
-        <Button
-          label={isCopied ? locales.copied : locales.copy}
+      <div className="flex flex-wrap items-center justify-center gap-2.5">
+        <button
+          type="button"
+          aria-label={isCopied ? locales.copied : locales.copy}
           onClick={copyHandler}
           data-umami-event={`content_share-copy_${dasherize(path.replace(/\//g, '-'))}`}
-          className={cn([
-            isCopied ? 'bg-success shadow-green-500' : 'bg-zinc-600 shadow-zinc-500',
-            'btn-circle btn-lg text-white shadow-none outline-0 border-0 hover:-translate-y-1 hover:shadow-lg transition-all duration-200'
-          ])}
+          className={cn([SHARE_BUTTON, isCopied && 'bg-brand-soft text-brand'])}
         >
-          {isCopied ? (
-            <span className="text-xs font-bold text-white">✓</span>
-          ) : (
-            <IconCopy className="w-6 h-6 text-white" />
-          )}
-        </Button>
+          {isCopied ? <span className="text-sm font-bold">✓</span> : <IconCopy className="h-5 w-5" />}
+        </button>
         {socialShares.map((social) => (
-          <Button
-            label={`Button to ${social.label}`}
+          <button
+            type="button"
+            aria-label={social.label}
             key={social.label}
             onClick={onShare(social)}
             data-umami-event={`content_share-${dasherize(social.label.substring(9))}_${dasherize(path.replace(/\//g, '-'))}`}
-            className={cn([
-              social.color,
-              'btn-circle btn-lg text-white shadow-none outline-0 border-0 hover:-translate-y-1 hover:shadow-lg'
-            ])}
+            className={SHARE_BUTTON}
           >
-            <social.logo className="w-6 h-6 text-white" />
-          </Button>
+            <social.logo className="h-5 w-5" />
+          </button>
         ))}
         {postSlug && (
-          <Button
-            label={locales.shareImage}
+          <button
+            type="button"
+            aria-label={locales.shareImage}
             title={locales.shareImage}
             onClick={() => setImageOpen(true)}
             aria-haspopup="dialog"
             data-umami-event={`content_share-image_${umamiSuffix}`}
-            className="bg-[#C9822E] shadow-amber-600 btn-circle btn-lg text-white shadow-none outline-0 border-0 hover:-translate-y-1 hover:shadow-lg"
+            className={SHARE_BUTTON}
           >
-            <IconImage className="w-6 h-6 text-white" aria-hidden />
-          </Button>
+            <IconImage className="h-5 w-5" aria-hidden />
+          </button>
         )}
       </div>
       {postSlug && (

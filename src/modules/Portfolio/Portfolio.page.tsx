@@ -1,4 +1,5 @@
 import { NextPageProps } from '@/@types/global';
+import PageHead from '@/packages/components/layouts/PageHead';
 import { I18n, I18nLocales } from '@/packages/libs/I18n/interface';
 import { getDefaultLanguage } from '@/packages/libs/I18n/utils';
 
@@ -21,16 +22,10 @@ async function PortfolioPage(props: NextPageProps) {
 
   return (
     <div className="min-h-screen text-base-content">
-      <div className="wide-container pb-8 pt-8 md:pt-14">
-        <header className="mb-10 max-w-2xl md:mb-12">
-          <h1 className="font-display text-4xl font-bold tracking-tight md:text-[56px] md:leading-[1.08]">
-            {content.title}
-          </h1>
-          <p className="mt-4 text-base text-muted md:text-lg">{content.desc}</p>
-        </header>
-
+      <PageHead title={content.title} description={content.desc} />
+      <div className="wide-container pb-8 pt-12 md:pt-16">
         <section className="mb-16">
-          <h2 className="font-display text-2xl font-bold tracking-tight md:text-[32px]">{content.buildingTitle}</h2>
+          <h2 className="font-display text-[30px] font-extrabold leading-[1.05] tracking-[-0.03em] sm:text-[40px]">{content.buildingTitle}</h2>
           <p className="mt-1.5 text-muted">{content.buildingDesc}</p>
           <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2">
             {PROJECTS.map((project) => (
@@ -40,7 +35,7 @@ async function PortfolioPage(props: NextPageProps) {
         </section>
 
         {WORK.length > 0 && (<section>
-          <h2 className="font-display text-2xl font-bold tracking-tight md:text-[32px]">{content.workTitle}</h2>
+          <h2 className="font-display text-[30px] font-extrabold leading-[1.05] tracking-[-0.03em] sm:text-[40px]">{content.workTitle}</h2>
           <p className="mt-1.5 text-muted">{content.workDesc}</p>
 
           <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2">

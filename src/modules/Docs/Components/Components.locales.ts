@@ -45,22 +45,6 @@ const withComponentsLocales = createContentLocales({
     en: 'Saving',
     id: 'Menyimpan'
   },
-  bannerTitle: {
-    en: 'Full-bleed banner',
-    id: 'Banner full-bleed'
-  },
-  bannerDesc: {
-    en: 'Banner sits under the sticky, transparent header: it pulls itself up by --header-h with a negative margin, then pads its content back down by the same amount. A default banner gets the grid overlay and no parallax; a real image gets parallax and a dark scrim. The frame below gives it a fake header height so the trick is visible.',
-    id: 'Banner ada di bawah header yang sticky dan transparan: dia narik dirinya ke atas sebesar --header-h pakai negative margin, terus kasih padding ke konten dengan ukuran yang sama. Banner default dapat overlay grid dan tanpa parallax; gambar asli dapat parallax dan scrim gelap. Frame di bawah kasih tinggi header palsu biar trik-nya kelihatan.'
-  },
-  bannerHeader: {
-    en: 'transparent header area (--header-h)',
-    id: 'area header transparan (--header-h)'
-  },
-  bannerContent: {
-    en: 'Content starts below the header',
-    id: 'Konten mulai di bawah header'
-  },
   imageTitle: {
     en: 'Zoomable content image',
     id: 'Gambar konten yang bisa di-zoom'

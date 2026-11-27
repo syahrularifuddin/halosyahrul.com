@@ -29,9 +29,9 @@ http://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascr
 
 :root {
   /* code blocks sit on the terminal colour of the active theme */
-  --background: var(--gd-terminal, #2A2420);
+  --background: var(--hs-terminal, #15241C);
   --comment: #7f8aa8;
-  --foreground: #f3ece2;
+  --foreground: #E9F0EA;
   --selection: #4a4037;
 
   --cyan: #8be9fd;
@@ -206,7 +206,7 @@ pre[class*='language-'] {
   color: var(--foreground);
   background: var(--background);
   text-shadow: none;
-  font-family: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo,
+  font-family: var(--ff-mono), ui-monospace, SFMono-Regular, Menlo,
     Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
   font-size: 0.875em;
   text-align: left;
@@ -244,7 +244,7 @@ div.rehype-code-title {
   border-radius: 1rem 1rem 0 0;
   padding: 0.75em 1em;
   color: var(--foreground);
-  background-color: color-mix(in srgb, var(--gd-terminal) 78%, #f3ece2);
+  background-color: color-mix(in srgb, var(--hs-terminal) 78%, #E9F0EA);
   @apply mb-0;
   & + pre {
     @apply mt-0 rounded-t-none;

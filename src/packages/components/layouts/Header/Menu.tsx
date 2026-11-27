@@ -1,49 +1,26 @@
 'use client';
 
-import { Briefcase, Clock, Home, Menu as MenuIcon, PenTool, Search, User, X } from 'lucide-react';
+import { Briefcase, Clock, Home, PenTool, Search, User } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
 
 import cn from '@/designs/utils/cn';
-import Dropdown from '@/packages/components/base/Floatings/Dropdown';
 import NextLink from '@/packages/components/base/Navigations/NextLink';
 import useLangugage from '@/packages/libs/I18n/i18n.client';
 
 import useCommandPalette from '../CommandPalette/useCommandPalette';
 
+/** a square control inside the header island */
+export const ISLAND_BUTTON = 'grid h-10 w-10 shrink-0 cursor-pointer place-items-center rounded-xl text-base-content transition-colors duration-200 hover:bg-base-200';
+
 const menuItems = [
-  {
-    label: 'Home',
-    href: '/',
-    icon: Home
-  },
-  {
-    label: 'Portfolio',
-    href: '/portfolio',
-    icon: Briefcase
-  },
-  {
-    label: 'Blog',
-    href: '/blog',
-    icon: PenTool
-  },
-  {
-    label: 'Now',
-    href: '/now',
-    icon: Clock
-  },
-  {
-    label: 'About',
-    href: '/about',
-    icon: User
-  }
+  { label: 'Home', href: '/', icon: Home },
+  { label: 'Portfolio', href: '/portfolio', icon: Briefcase },
+  { label: 'Blog', href: '/blog', icon: PenTool },
+  { label: 'Now', href: '/now', icon: Clock },
+  { label: 'About', href: '/about', icon: User }
 ];
 
-/**
- * Whether `route` is the page being viewed
- * @param pathname - current pathname, language prefix included
- * @param route - menu route, without language prefix
- */
+/** Whether `route` (a menu route, without language prefix) is the page being viewed */
 function useIsActiveRoute() {
   const pathname = usePathname();
   const currentLang = useLangugage();
@@ -56,17 +33,12 @@ function useIsActiveRoute() {
   };
 }
 
-/**
- * Pill navigation shown from the `md` breakpoint up
- */
+/** Text navigation inside the header island, from the `md` breakpoint up */
 export function DesktopMenu() {
   const isActiveRoute = useIsActiveRoute();
 
   return (
-    <nav
-      aria-label="Main"
-      className="hidden items-center gap-1 rounded-full floating-glass p-[5px] md:flex"
-    >
+    <nav aria-label="Main" className="hidden items-center gap-0.5 md:flex">
       {menuItems.map((item) => {
         const isActive = isActiveRoute(item.href);
 
@@ -77,10 +49,8 @@ export function DesktopMenu() {
             href={item.href}
             aria-current={isActive ? 'page' : undefined}
             className={cn([
-              'rounded-full px-3.5 py-[7px] text-sm font-semibold transition-colors duration-200',
-              isActive
-                ? 'bg-brand-soft text-brand'
-                : 'text-muted hover:text-base-content'
+              'rounded-xl px-3.5 py-2 text-sm font-semibold transition-colors duration-200',
+              isActive ? 'bg-base-content text-base-100' : 'text-muted hover:bg-base-200 hover:text-base-content'
             ])}
           >
             {item.label}
@@ -92,81 +62,48 @@ export function DesktopMenu() {
 }
 
 /**
- * Hamburger menu shown below the `md` breakpoint
+ * Tab bar docked to the bottom of the screen below the `md` breakpoint: the
+ * five destinations stay one thumb tap away, no menu to open.
  */
-export function MobileMenu() {
+export function MobileTabBar() {
   const isActiveRoute = useIsActiveRoute();
-  const [isOpen, setIsOpen] = useState(false);
-  const { setIsOpen: setPaletteOpen } = useCommandPalette();
-  const lang = useLangugage();
 
   return (
-    <div className="md:hidden">
-      <Dropdown
-        open={isOpen}
-        onOpenChange={setIsOpen}
-        triggerClassName="btn-circle h-[38px] w-[38px] min-h-0 floating-glass p-0"
-        trigger={
-          <span aria-label={isOpen ? 'Close menu' : 'Open menu'}>
-            {isOpen ? <X className="h-[18px] w-[18px]" /> : <MenuIcon className="h-[18px] w-[18px]" />}
-          </span>
-        }
-      >
-        {menuItems.map((item) => {
-          const isActive = isActiveRoute(item.href);
-          return (
-            <li key={item.href}>
-              <NextLink
-                withCurrentLocale
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                aria-current={isActive ? 'page' : undefined}
-                className={cn([
-                  'flex items-center gap-3 rounded-xl font-semibold transition-colors duration-200',
-                  isActive ? 'bg-brand-soft text-brand' : 'text-base-content hover:bg-base-200'
-                ])}
-              >
-                <item.icon className="h-4 w-4" />
-                <span>{item.label}</span>
-              </NextLink>
-            </li>
-          );
-        })}
-        <li className="mt-1 border-t border-line pt-1">
-          <button
-            type="button"
-            onClick={() => {
-              setIsOpen(false);
-              setPaletteOpen(true);
-            }}
-            className="flex items-center gap-3 rounded-xl font-semibold text-base-content transition-colors duration-200 hover:bg-base-200"
+    <nav
+      aria-label="Main"
+      className="floating-glass fixed inset-x-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-40 grid grid-cols-5 gap-1 rounded-[22px] p-1.5 md:hidden"
+    >
+      {menuItems.map((item) => {
+        const isActive = isActiveRoute(item.href);
+        return (
+          <NextLink
+            key={item.href}
+            withCurrentLocale
+            href={item.href}
+            aria-current={isActive ? 'page' : undefined}
+            className={cn([
+              'flex min-h-[52px] flex-col items-center justify-center gap-1 rounded-2xl text-[11px] font-semibold leading-none transition-colors duration-200',
+              isActive ? 'bg-base-content text-base-100' : 'text-muted'
+            ])}
           >
-            <Search className="h-4 w-4" />
-            <span>{lang === 'id' ? 'Cari' : 'Search'}</span>
-          </button>
-        </li>
-      </Dropdown>
-    </div>
+            <item.icon aria-hidden className="h-5 w-5" />
+            {item.label}
+          </NextLink>
+        );
+      })}
+    </nav>
   );
 }
 
-/**
- * Search button shown from the `md` breakpoint up: opens the same palette as Cmd+K
- */
-export function DesktopSearchButton() {
+/** Opens the same palette as Cmd+K */
+export function SearchButton() {
   const { setIsOpen } = useCommandPalette();
   const lang = useLangugage();
   const label = lang === 'id' ? 'Cari (Ctrl+K)' : 'Search (Ctrl+K)';
 
   return (
-    <button
-      type="button"
-      onClick={() => setIsOpen(true)}
-      aria-label={label}
-      title={label}
-      className="btn btn-circle hidden h-[38px] w-[38px] min-h-0 floating-glass p-0 md:inline-flex"
-    >
-      <Search className="h-[18px] w-[18px]" />
+    <button type="button" onClick={() => setIsOpen(true)} aria-label={label} title={label} className={ISLAND_BUTTON}>
+      <Search aria-hidden className="h-[18px] w-[18px]" />
     </button>
   );
 }

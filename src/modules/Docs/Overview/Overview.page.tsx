@@ -2,12 +2,12 @@ import Fs from 'fs/promises';
 import path from 'path';
 
 import { NextPageProps } from '@/@types/global';
-import CodeSnippet from '@/modules/Docs/components/CodeSnippet';
-import DocsSection from '@/modules/Docs/components/DocsSection';
-import DocsShell from '@/modules/Docs/components/DocsShell';
 import withDocsLocales from '@/modules/Docs/Docs.locales';
 import { DOCS_PAGES } from '@/modules/Docs/Docs.shared';
 import withOverviewLocales from '@/modules/Docs/Overview/Overview.locales';
+import CodeSnippet from '@/modules/Docs/shared/CodeSnippet';
+import DocsSection from '@/modules/Docs/shared/DocsSection';
+import DocsShell from '@/modules/Docs/shared/DocsShell';
 import NextLink from '@/packages/components/base/Navigations/NextLink';
 import { I18nLocales } from '@/packages/libs/I18n/interface';
 import { getDefaultLanguage, getLocalizedPathname } from '@/packages/libs/I18n/utils';
@@ -17,7 +17,7 @@ const STACK: { name: string; role: string }[] = [
   { name: 'next', role: 'App Router, static params, ImageResponse for OG images' },
   { name: 'react', role: 'UI' },
   { name: 'tailwindcss', role: 'styles, theme tokens as utilities' },
-  { name: 'daisyui', role: 'gading-light and gading-dark themes, primitives' },
+  { name: 'daisyui', role: 'halo-light and halo-dark themes, primitives' },
   { name: 'mdx-bundler', role: 'compiles each post at build time' },
   { name: 'typescript', role: 'types' },
   { name: 'cloudinary', role: 'media sync script (devDependency)' },

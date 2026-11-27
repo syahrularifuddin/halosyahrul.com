@@ -85,7 +85,7 @@ function HeroPortrait({ lang, alt, moodLabel, moodHint, pillClassName, pillSmall
           type="button"
           onClick={nextMood}
           aria-label={`${moodHint}: ${moodText}`}
-          className="hero-portrait relative z-[1] block h-[260px] w-[230px] cursor-pointer overflow-hidden rounded-[160px_160px_28px_28px] border-[6px] border-card bg-gradient-to-b from-brand-soft to-lilac-soft shadow-soft sm:h-[340px] sm:w-[300px] dark:border-[#2A231D]"
+          className="hero-portrait relative z-[1] block h-[260px] w-[230px] cursor-pointer overflow-hidden rounded-[44px] border-[6px] border-card bg-gradient-to-b from-brand-soft to-lilac-soft shadow-soft sm:h-[340px] sm:w-[300px] dark:border-[#1E2823]"
         >
           <Image
             src="/media/authors/avatar.png"
@@ -102,7 +102,7 @@ function HeroPortrait({ lang, alt, moodLabel, moodHint, pillClassName, pillSmall
         type="button"
         onClick={nextMood}
         aria-label={`${moodHint}: ${moodText}`}
-        className={cn(pillClassName, 'left-[-34px] top-[18px] cursor-pointer lg:left-[-110px] lg:top-9')}
+        className={cn(pillClassName, 'left-[-34px] top-[18px] cursor-pointer lg:left-[-84px] lg:top-9')}
       >
         <span aria-hidden key={mood.emoji} className="hero-mood-emoji inline-block">{mood.emoji}</span>
         <span className="text-left">

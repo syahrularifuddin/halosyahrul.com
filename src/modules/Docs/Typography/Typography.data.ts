@@ -2,34 +2,34 @@
 export const FAMILIES = [
   {
     key: 'sans',
-    name: 'Plus Jakarta Sans',
+    name: 'Figtree',
     utility: 'font-sans',
-    variable: '--font-plus-jakarta-sans',
+    variable: '--ff-body',
     weights: [400, 500, 600, 700],
     className: 'font-sans'
   },
   {
     key: 'display',
-    name: 'Space Grotesk',
+    name: 'Gabarito',
     utility: 'font-display / font-serif',
-    variable: '--font-space-grotesk',
-    weights: [500, 600, 700],
+    variable: '--ff-display',
+    weights: [500, 600, 700, 800],
     className: 'font-display'
   },
   {
     key: 'mono',
-    name: 'JetBrains Mono',
+    name: 'IBM Plex Mono',
     utility: 'font-mono',
-    variable: '--font-jetbrains-mono',
+    variable: '--ff-mono',
     weights: [400, 500],
     className: 'font-mono'
   },
   {
     key: 'hand',
-    name: 'Caveat',
+    name: 'Shantell Sans',
     utility: 'font-hand',
-    variable: '--font-caveat',
-    weights: [600],
+    variable: '--ff-hand',
+    weights: [500, 600],
     className: 'font-hand'
   }
 ] as const;

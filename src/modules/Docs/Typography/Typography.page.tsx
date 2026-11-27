@@ -1,8 +1,8 @@
 import { NextPageProps } from '@/@types/global';
 import cn from '@/designs/utils/cn';
-import DocsSection from '@/modules/Docs/components/DocsSection';
-import DocsShell from '@/modules/Docs/components/DocsShell';
 import { generateDocsPathsDefault, generateDocsPathsWithLang } from '@/modules/Docs/Docs.shared';
+import DocsSection from '@/modules/Docs/shared/DocsSection';
+import DocsShell from '@/modules/Docs/shared/DocsShell';
 import { FAMILIES, FamilyKey, SCALE } from '@/modules/Docs/Typography/Typography.data';
 import withTypographyLocales from '@/modules/Docs/Typography/Typography.locales';
 import { I18nLocales } from '@/packages/libs/I18n/interface';

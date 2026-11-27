@@ -11,15 +11,32 @@ export function layer(width: number, height: number): CSSProperties {
 }
 
 interface BannerProps {
-  src: string;
+  /** null when the post has no cover: the site mark is drawn instead */
+  src: string | null;
   width: number;
   height: number;
-  /** CSS gradient laid over the banner box, ending in the base colour where the banner ends */
+  /** CSS gradient laid over the cover, ending in the base colour where the cover ends */
   fade: string;
 }
 
-/** Banner photo with its fade, anchored to the top of the canvas */
+/** Cover photo with its fade, anchored to the top of the canvas; without a cover, the site mark */
 export function Banner({ src, width, height, fade }: BannerProps) {
+  if (!src) {
+    const size = Math.round(Math.min(width * 0.3, height * 0.45));
+    return (
+      <svg
+        width={size}
+        height={size}
+        viewBox="0 0 100 100"
+        style={{ position: 'absolute', top: Math.round(height * 0.14), right: Math.round(width * 0.08), transform: 'rotate(6deg)' }}
+      >
+        <rect width="100" height="100" rx="26" fill="rgba(244,247,240,0.1)" />
+        <circle cx="50" cy="50" r="16" fill={OG_COLORS.content} />
+        <path d="M26 100 a24 24 0 0 1 48 0 z" fill={OG_COLORS.content} />
+        <ellipse cx="50" cy="26" rx="23" ry="7.5" fill="none" stroke={OG_COLORS.halo} strokeWidth="5" />
+      </svg>
+    );
+  }
   return (
     <div style={layer(width, height)}>
       <img alt="" src={src} width={width} height={height} style={{ ...layer(width, height), objectFit: 'cover' }} />
@@ -29,12 +46,12 @@ export function Banner({ src, width, height, fade }: BannerProps) {
 }
 
 interface LockupProps {
-  /** avatar diameter; the type scales from it */
+  /** avatar side; the type scales from it */
   size: number;
   avatar: string;
   nameSize: number;
   domainSize: number;
-  /** dark pill behind the lockup, for when it sits on the banner */
+  /** dark plate behind the lockup, for when it sits on the cover */
   pill?: boolean;
   nameColor?: string;
   domainColor?: string;
@@ -42,7 +59,7 @@ interface LockupProps {
 
 /** Avatar with SITE_NAME over SITE_DOMAIN: the brand mark on every image */
 export function Lockup(props: LockupProps) {
-  const { size, avatar, nameSize, domainSize, pill = false, nameColor = OG_COLORS.content, domainColor = OG_COLORS.amber } = props;
+  const { size, avatar, nameSize, domainSize, pill = false, nameColor = OG_COLORS.content, domainColor = OG_COLORS.note } = props;
   const gap = Math.round(size * 0.24);
   const pad = Math.round(size * 0.17);
   return (
@@ -51,8 +68,8 @@ export function Lockup(props: LockupProps) {
         display: 'flex',
         alignItems: 'center',
         ...(pill ? {
-          background: 'rgba(23,19,15,0.72)',
-          borderRadius: 999,
+          background: 'rgba(15,21,18,0.55)',
+          borderRadius: Math.round(size * 0.45),
           padding: `${pad}px ${Math.round(pad * 2.3)}px ${pad}px ${pad}px`
         } : {})
       }}
@@ -62,13 +79,13 @@ export function Lockup(props: LockupProps) {
         src={avatar}
         width={size}
         height={size}
-        style={{ width: size, height: size, borderRadius: size / 2, border: `3px solid ${OG_COLORS.amber}` }}
+        style={{ width: size, height: size, borderRadius: Math.round(size * 0.3), border: `3px solid ${OG_COLORS.note}` }}
       />
       <div style={{ display: 'flex', flexDirection: 'column', marginLeft: gap }}>
-        <div style={{ display: 'flex', fontFamily: 'Space Grotesk', fontWeight: 700, fontSize: nameSize, lineHeight: 1.1, color: nameColor }}>
+        <div style={{ display: 'flex', fontFamily: 'Gabarito', fontWeight: 800, fontSize: nameSize, lineHeight: 1.1, color: nameColor }}>
           {SITE_NAME}
         </div>
-        <div style={{ display: 'flex', marginTop: 4, fontFamily: 'JetBrains Mono', fontWeight: 500, fontSize: domainSize, lineHeight: 1.2, color: domainColor }}>
+        <div style={{ display: 'flex', marginTop: 4, fontFamily: 'IBM Plex Mono', fontWeight: 500, fontSize: domainSize, lineHeight: 1.2, color: domainColor }}>
           {SITE_DOMAIN}
         </div>
       </div>
@@ -84,10 +101,10 @@ interface TagBadgesProps {
 }
 
 const MAX_TAGS = 3;
-/** JetBrains Mono advance is 0.6em */
+/** IBM Plex Mono advance is 0.6em */
 const MONO_ADVANCE = 0.6;
 
-/** Up to three solid amber pills on one row */
+/** Up to three solid tags on one row */
 export function TagBadges({ tags, fontSize, maxWidth }: TagBadgesProps) {
   const padX = Math.round(fontSize * 0.8);
   const gap = Math.round(fontSize * 0.48);
@@ -109,10 +126,10 @@ export function TagBadges({ tags, fontSize, maxWidth }: TagBadgesProps) {
             display: 'flex',
             marginLeft: index ? gap : 0,
             padding: `${Math.round(fontSize * 0.36)}px ${padX}px`,
-            borderRadius: 999,
-            background: OG_COLORS.amber,
+            borderRadius: Math.round(fontSize * 0.5),
+            background: OG_COLORS.note,
             color: OG_COLORS.base,
-            fontFamily: 'JetBrains Mono',
+            fontFamily: 'IBM Plex Mono',
             fontWeight: 500,
             fontSize,
             lineHeight: 1.1
@@ -125,13 +142,20 @@ export function TagBadges({ tags, fontSize, maxWidth }: TagBadgesProps) {
   );
 }
 
-/** The amber wave under the title */
-export function Wave({ width, marginTop }: { width: number; marginTop: number }) {
-  const height = Math.round((width / 132) * 16);
+/** The orange marker swipe under the title, the one the Home headline has */
+export function Swipe({ width, marginTop }: { width: number; marginTop: number }) {
   return (
-    <svg width={width} height={height} viewBox="0 0 132 16" style={{ marginTop }}>
-      <path d="M2 8 Q 10.25 1 18.5 8 T 35 8 T 51.5 8 T 68 8 T 84.5 8 T 101 8 T 117.5 8 T 130 8" fill="none" stroke={OG_COLORS.amber} strokeWidth="5" strokeLinecap="round" />
-    </svg>
+    <div
+      style={{
+        display: 'flex',
+        width,
+        height: Math.round(width * 0.11),
+        marginTop,
+        borderRadius: Math.round(width * 0.03),
+        background: OG_COLORS.mark,
+        transform: 'rotate(-1deg)'
+      }}
+    />
   );
 }
 
@@ -151,8 +175,8 @@ export function Title({ text, fontSize, maxLines, marginTop = 0, letterSpacing =
       style={{
         display: 'block',
         marginTop,
-        fontFamily: 'Space Grotesk',
-        fontWeight: 700,
+        fontFamily: 'Gabarito',
+        fontWeight: 800,
         fontSize,
         lineHeight,
         letterSpacing,
@@ -183,7 +207,7 @@ export function MonoText({ text, fontSize, marginTop, color, maxLines, lineHeigh
       style={{
         display: 'block',
         marginTop,
-        fontFamily: 'JetBrains Mono',
+        fontFamily: 'IBM Plex Mono',
         fontWeight: 500,
         fontSize,
         lineHeight,

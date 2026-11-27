@@ -9,93 +9,91 @@ import ChatLoop from './ChatLoop';
 interface Props {
   project: Project;
   lang: I18nLocales;
-  /** `feature` is the big Home card: larger title, chat mock and the sticker */
+  /** `feature` is the wide Home card: colour block beside the body, larger title, chat mock */
   variant?: 'feature' | 'standard';
   className?: string;
 }
 
-const TONES: Record<ProjectTone, { label: string; link: string }> = {
-  brand: { label: 'bg-brand-soft text-brand', link: 'text-brand' },
-  teal: { label: 'bg-teal-soft text-teal', link: 'text-teal' },
-  rose: { label: 'bg-rose-soft text-rose', link: 'text-rose' },
-  lilac: { label: 'bg-lilac-soft text-lilac', link: 'text-lilac' }
+const TONES: Record<ProjectTone, { block: string; link: string }> = {
+  brand: { block: 'bg-brand-soft text-brand', link: 'text-brand' },
+  teal: { block: 'bg-teal-soft text-teal', link: 'text-teal' },
+  rose: { block: 'bg-rose-soft text-rose', link: 'text-rose' },
+  lilac: { block: 'bg-lilac-soft text-lilac', link: 'text-lilac' }
 };
 
+/**
+ * A project as a card with a colour block: the block carries the tag and the
+ * title in large type, the body the summary, the stack and the link. The
+ * `feature` card puts the block beside the body, the others put it on top.
+ */
 function ProjectCard({ project, lang, variant = 'standard', className }: Props) {
   const { tone, tag, title, summary, chips, link, chat, location } = project;
   const isFeature = variant === 'feature';
-  const linkClassName = cn(['mt-auto font-mono text-sm font-medium', TONES[tone].link]);
+  const linkClassName = cn(['mt-auto pt-2 font-mono text-sm font-medium [overflow-wrap:anywhere] hover:underline underline-offset-4', TONES[tone].link]);
 
   return (
     <article
       className={cn([
-        'group/card relative flex flex-col gap-3 rounded-3xl bg-card p-7 shadow-soft',
+        'group/card relative flex flex-col overflow-hidden rounded-[28px] bg-card shadow-soft',
+        isFeature && 'md:grid md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]',
         className
       ])}
     >
-      {isFeature && (
-        // the one sticker of the page, kept on the Home card only
-        <span className="sticker-wiggle absolute -top-3.5 right-4 z-[2] rotate-6 rounded-xl bg-lilac-soft px-3.5 py-px font-hand text-[22px] text-lilac shadow-soft sm:right-6">
-          my baby ♡
-        </span>
-      )}
-
-      <div className="flex items-center justify-between gap-3">
-        <span className={cn(['rounded-full px-[11px] py-1 font-mono text-xs font-medium', TONES[tone].label])}>
-          {tag}
-        </span>
-        {location && (
-          <span className="font-mono text-xs text-muted">{location[lang]}</span>
-        )}
+      <div className={cn(['flex flex-col justify-between gap-8 p-7', isFeature && 'md:p-9', TONES[tone].block])}>
+        <div className="flex items-center justify-between gap-3 font-mono text-xs font-medium">
+          <span>{tag}</span>
+          {location && <span>{location[lang]}</span>}
+        </div>
+        <h3
+          className={cn([
+            'font-display font-extrabold tracking-[-0.03em]',
+            isFeature ? 'text-[34px] leading-[1.02] sm:text-5xl' : 'text-[28px] leading-[1.05]'
+          ])}
+        >
+          {title[lang]}
+        </h3>
       </div>
 
-      <h3
-        className={cn([
-          'font-display font-bold tracking-tight',
-          isFeature ? 'text-[28px] leading-[1.1] sm:text-4xl' : 'text-2xl'
-        ])}
-      >
-        {title[lang]}
-      </h3>
+      <div className={cn(['flex flex-1 flex-col gap-4 p-7', isFeature && 'md:p-9'])}>
+        <p className={cn(['text-muted', isFeature ? 'text-[17px]' : 'text-[15px]'])}>
+          <Emphasis text={summary[lang]} />
+        </p>
 
-      <p className="text-[15px] text-muted">
-        <Emphasis text={summary[lang]} />
-      </p>
+        {isFeature && chat && chat.length > 0 && <ChatLoop chats={chat} lang={lang} />}
 
-      {isFeature && chat && chat.length > 0 && <ChatLoop chats={chat} lang={lang} />}
+        {chips && chips.length > 0 && (
+          <ul className="flex flex-wrap gap-2">
+            {chips.map((chip) => (
+              <li key={chip} className="rounded-lg bg-base-100 px-2.5 py-1 font-mono text-xs font-medium text-muted">
+                {chip}
+              </li>
+            ))}
+          </ul>
+        )}
 
-      {chips && chips.length > 0 && (
-        <ul className="flex flex-wrap gap-2">
-          {chips.map((chip) => (
-            <li key={chip} className="rounded-full bg-base-100 px-2.5 py-1 font-mono text-xs font-medium text-muted">
-              {chip}
-            </li>
-          ))}
-        </ul>
-      )}
-
-      {!link ? (
-        <span className="mt-auto font-mono text-sm font-medium text-muted">internal</span>
-      ) : link.target.type === 'external' ? (
-        <a
-          href={link.target.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={cn([linkClassName, 'hover:underline underline-offset-4'])}
-          data-umami-event={`project_${project.id}`}
-        >
-          {link.label[lang]}
-        </a>
-      ) : (
-        <NextLink
-          withCurrentLocale
-          href={link.target.path[lang]}
-          className={cn([linkClassName, 'hover:underline underline-offset-4'])}
-          data-umami-event={`project_${project.id}`}
-        >
-          {link.label[lang]}
-        </NextLink>
-      )}
+        {!link ? (
+          <span className="mt-auto pt-2 font-mono text-sm font-medium text-muted">internal</span>
+        ) : link.target.type === 'external' ? (
+          <a
+            href={link.target.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={linkClassName}
+            data-umami-event={`project_${project.id}`}
+          >
+            {link.label[lang]}
+          </a>
+        ) : (
+          <NextLink
+            withCurrentLocale
+            href={link.target.path[lang]}
+            className={linkClassName}
+            data-umami-event={`project_${project.id}`}
+          >
+            {link.label[lang]}
+          </NextLink>
+        )}
+      </div>
     </article>
   );
 }

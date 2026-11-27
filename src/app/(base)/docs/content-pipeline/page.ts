@@ -19,7 +19,6 @@ export const generateMetadata = withGenerateMetadata(async() => {
       title: content.title,
       description: content.description,
       keywords: 'docs, blog, mdx, og image, sitemap, github actions',
-      image: '/media/default-banners/6.jpg',
       tags: ['docs', 'design system'],
       date: dt().format('YYYY-MM-DD')
     }

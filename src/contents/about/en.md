@@ -3,7 +3,6 @@ title: "About"
 date: 2026-11-23
 description: "About Syahrul Arifuddin."
 keywords: "syahrul arifuddin, about syahrul, halo syahrul"
-image: "/media/default-banners/1.jpg"
 ---
 
 {/* TODO: write about yourself: what you do, what you like to work on, how to reach you. */}

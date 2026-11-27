@@ -4,6 +4,7 @@ import cn from '@/designs/utils/cn';
 import withDocsLocales from '@/modules/Docs/Docs.locales';
 import { DOCS_PAGES, DocsPageKey } from '@/modules/Docs/Docs.shared';
 import NextLink from '@/packages/components/base/Navigations/NextLink';
+import PageHead from '@/packages/components/layouts/PageHead';
 import { I18nLocales } from '@/packages/libs/I18n/interface';
 import { getLocalizedPathname } from '@/packages/libs/I18n/utils';
 
@@ -23,16 +24,9 @@ function DocsShell({ lang, active, title, description, children }: PropsWithChil
 
   return (
     <div className="min-h-screen text-base-content">
-      <div className="wide-container pb-8 pt-8 md:pt-14">
-        <header className="max-w-2xl">
-          <span className="font-hand text-[24px] leading-none text-brand">{labels.eyebrow}</span>
-          <h1 className="mt-1 font-display text-4xl font-bold tracking-tight md:text-[52px] md:leading-[1.08]">
-            {title}
-          </h1>
-          <p className="mt-4 text-base text-muted md:text-lg">{description}</p>
-        </header>
-
-        <nav aria-label={labels.navLabel} className="-mx-5 mt-8 overflow-x-auto px-5 sm:mx-0 sm:px-0">
+      <PageHead eyebrow={labels.eyebrow} title={title} description={description} />
+      <div className="wide-container pb-8">
+        <nav aria-label={labels.navLabel} className="-mx-5 mt-6 overflow-x-auto px-5 sm:mx-0 sm:px-0">
           <ul className="flex w-max gap-2 pb-1">
             {DOCS_PAGES.map((page) => {
               const isActive = page.key === active;
@@ -42,7 +36,7 @@ function DocsShell({ lang, active, title, description, children }: PropsWithChil
                     href={getLocalizedPathname(page.href, lang)}
                     aria-current={isActive ? 'page' : undefined}
                     className={cn([
-                      'block whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold transition-colors',
+                      'block whitespace-nowrap rounded-xl px-4 py-2 text-sm font-semibold transition-colors',
                       isActive
                         ? 'bg-base-content text-base-100'
                         : 'bg-card text-base-content shadow-soft hover:text-brand'

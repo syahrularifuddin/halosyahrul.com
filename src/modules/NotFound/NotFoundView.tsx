@@ -3,8 +3,6 @@
 import { ArrowRight } from 'lucide-react';
 import { useMemo } from 'react';
 
-import { AUTHOR_NAME } from '@/configs/author';
-import Image from '@/packages/components/base/Displays/Image';
 import NextLink from '@/packages/components/base/Navigations/NextLink';
 import dt from '@/packages/libs/DayJS/dt';
 import useLangugage from '@/packages/libs/I18n/i18n.client';
@@ -46,48 +44,51 @@ function NotFoundView({ postsByLanguage }: Props) {
   const posts = postsByLanguage[language] ?? [];
 
   return (
-    <div className="flex min-h-[80vh] flex-col items-center justify-center px-6 py-16 text-base-content">
-      <div className="w-full max-w-lg text-center">
-        <Image
-          src="/android-chrome-192x192.png"
-          alt={AUTHOR_NAME}
-          width={96}
-          height={96}
-          className="mx-auto h-24 w-24 rounded-full shadow-soft"
-          wrapperClassName="mx-auto"
-        />
-        <p className="mt-6 font-mono text-sm font-semibold uppercase tracking-widest text-brand">404</p>
-        <h1 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">{locales.title}</h1>
-        <p className="mx-auto mt-4 max-w-md text-base opacity-80">{locales.line}</p>
-        <NextLink withCurrentLocale href="/" className="btn btn-primary mt-8 rounded-full px-6">
+    <div className="wide-container min-h-[70vh] pt-5 text-base-content">
+      <div className="rounded-[32px] bg-hero px-6 pb-28 pt-12 text-center text-hero-content lg:rounded-[40px] lg:pb-36 lg:pt-16">
+        <p className="font-display text-[96px] font-extrabold leading-none tracking-[-0.04em] sm:text-[140px]">
+          <span className="relative inline-block">
+            <span aria-hidden className="absolute inset-x-[-0.08em] bottom-[0.1em] h-[0.34em] -rotate-1 rounded-[0.08em] bg-hero-mark" />
+            <span className="relative">404</span>
+          </span>
+        </p>
+        <h1 className="mt-4 font-display text-3xl font-extrabold tracking-[-0.02em] sm:text-4xl">{locales.title}</h1>
+        <p className="mx-auto mt-3 max-w-md text-[17px] opacity-85">{locales.line}</p>
+        <NextLink
+          withCurrentLocale
+          href="/"
+          className="mt-7 inline-block rounded-2xl bg-hero-content px-[22px] py-3 text-[15px] font-semibold text-hero transition-transform duration-200 hover:-translate-y-0.5"
+        >
           {locales.button}
         </NextLink>
       </div>
 
       {posts.length > 0 && (
-        <section className="mt-14 w-full max-w-lg" aria-labelledby="not-found-latest">
-          <h2 id="not-found-latest" className="mb-3 text-center text-sm font-semibold uppercase tracking-wider opacity-60">
-            {locales.latest}
-          </h2>
-          <ul className="flex flex-col gap-3">
-            {posts.map((post) => (
-              <li key={post.slug}>
-                <NextLink
-                  withCurrentLocale
-                  href={`/blog/${post.slug}`}
-                  className="group flex items-center gap-4 rounded-box border border-base-content/10 bg-base-200/60 px-5 py-4 transition-colors hover:border-primary/40"
-                >
-                  <div className="min-w-0 flex-1 text-left">
-                    <p className="font-display font-semibold leading-snug group-hover:text-primary">{post.title}</p>
-                    <p className="mt-1 text-xs opacity-60">
-                      {dt(post.date).format('MMM DD, YYYY')} · {post.readTime}
-                    </p>
-                  </div>
-                  <ArrowRight className="h-4 w-4 shrink-0 opacity-50 transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
-                </NextLink>
-              </li>
-            ))}
-          </ul>
+        <section className="on-panel-edge" aria-labelledby="not-found-latest">
+          <div className="mx-auto max-w-2xl overflow-hidden rounded-[28px] bg-card shadow-soft">
+            <h2 id="not-found-latest" className="px-6 pt-5 font-hand text-[22px] leading-none text-brand">
+              {locales.latest}
+            </h2>
+            <ul className="mt-2 divide-y divide-line">
+              {posts.map((post) => (
+                <li key={post.slug}>
+                  <NextLink
+                    withCurrentLocale
+                    href={`/blog/${post.slug}`}
+                    className="group flex items-center gap-4 px-6 py-4 transition-colors duration-200 hover:bg-base-100"
+                  >
+                    <div className="min-w-0 flex-1">
+                      <p className="font-display text-lg font-bold leading-snug">{post.title}</p>
+                      <p className="mt-1 font-mono text-xs text-muted">
+                        {dt(post.date).format('MMM DD, YYYY')} · {post.readTime}
+                      </p>
+                    </div>
+                    <ArrowRight aria-hidden className="h-4 w-4 shrink-0 text-muted transition-transform duration-200 group-hover:translate-x-1 group-hover:text-base-content" />
+                  </NextLink>
+                </li>
+              ))}
+            </ul>
+          </div>
         </section>
       )}
     </div>

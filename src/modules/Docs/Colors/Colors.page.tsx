@@ -4,9 +4,9 @@ import withColorsLocales from '@/modules/Docs/Colors/Colors.locales';
 import ColorList from '@/modules/Docs/Colors/components/ColorList';
 import { ContrastTable, TokenCompare } from '@/modules/Docs/Colors/components/ThemeCompare';
 import { readThemeTokens } from '@/modules/Docs/Colors/services/theme-tokens';
-import DocsSection from '@/modules/Docs/components/DocsSection';
-import DocsShell from '@/modules/Docs/components/DocsShell';
 import { generateDocsPathsDefault, generateDocsPathsWithLang } from '@/modules/Docs/Docs.shared';
+import DocsSection from '@/modules/Docs/shared/DocsSection';
+import DocsShell from '@/modules/Docs/shared/DocsShell';
 import { I18nLocales } from '@/packages/libs/I18n/interface';
 import { getDefaultLanguage } from '@/packages/libs/I18n/utils';
 

@@ -7,20 +7,20 @@
 <head>
 <meta charset="utf-8">
 <style>
-  @font-face { font-family: 'JBM'; src: url('../../../../src/assets/og/JetBrainsMono-500.ttf'); font-weight: 500; }
-  @font-face { font-family: 'SG'; src: url('../../../../src/assets/og/SpaceGrotesk-700.ttf'); font-weight: 700; }
-  html, body { margin: 0; background: #17130F; }
-  #canvas { position: relative; overflow: hidden; background: #17130F; }
+  @font-face { font-family: 'JBM'; src: url('../../../../src/assets/og/IBMPlexMono-500.ttf'); font-weight: 500; }
+  @font-face { font-family: 'SG'; src: url('../../../../src/assets/og/Gabarito-800.ttf'); font-weight: 700; }
+  html, body { margin: 0; background: #0F1512; }
+  #canvas { position: relative; overflow: hidden; background: #0F1512; }
   #canvas::before {
     content: ''; position: absolute; inset: 0;
-    background-image: linear-gradient(to right, rgba(243,236,226,0.035) 1px, transparent 1px);
+    background-image: linear-gradient(to right, rgba(233,240,234,0.035) 1px, transparent 1px);
     background-size: 40px 40px;
   }
   #canvas::after {
     content: ''; position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 45% 40% at 80% 25%, rgba(232,165,90,0.13), transparent 70%),
-      radial-gradient(ellipse 40% 35% at 15% 85%, rgba(168,156,240,0.07), transparent 70%);
+      radial-gradient(ellipse 45% 40% at 80% 25%, rgba(95,211,155,0.13), transparent 70%),
+      radial-gradient(ellipse 40% 35% at 15% 85%, rgba(143,182,242,0.07), transparent 70%);
   }
   svg { position: relative; z-index: 1; display: block; }
   text { font-family: 'JBM', monospace; }
@@ -30,7 +30,7 @@
 <body>
 <div id="canvas"><svg id="svg" xmlns="http://www.w3.org/2000/svg"></svg></div>
 <script>
-const C = { amber: '#E8A55A', amberDeep: '#C9822E', teal: '#5CC7B8', lilac: '#A89CF0', rose: '#E98A8F', ink: '#F3ECE2', muted: '#A89C8E', base: '#17130F' };
+const C = { amber: '#5FD39B', amberDeep: '#17794D', teal: '#F29A6B', lilac: '#8FB6F2', rose: '#E98A8F', ink: '#E9F0EA', muted: '#9AA89F', base: '#0F1512' };
 const layout = new URLSearchParams(location.search).get('layout') || 'wide';
 const svg = document.getElementById('svg');
 const NS = 'http://www.w3.org/2000/svg';

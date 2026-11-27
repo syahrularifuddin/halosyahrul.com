@@ -55,8 +55,8 @@ const withTypographyLocales = createContentLocales({
     id: 'Isi post'
   },
   proseDesc: {
-    en: 'Posts render inside prose prose-sm sm:prose-base parser (ContentParser). The parser class in content-parser.css binds the typography plugin colours to the theme and sets headings in Space Grotesk.',
-    id: 'Post di-render di dalam prose prose-sm sm:prose-base parser (ContentParser). Class parser di content-parser.css nyambungin warna typography plugin ke theme dan bikin heading pakai Space Grotesk.'
+    en: 'Posts render inside prose prose-sm sm:prose-base parser (ContentParser). The parser class in content-parser.css binds the typography plugin colours to the theme and sets headings in Gabarito.',
+    id: 'Post di-render di dalam prose prose-sm sm:prose-base parser (ContentParser). Class parser di content-parser.css nyambungin warna typography plugin ke theme dan bikin heading pakai Gabarito.'
   },
   proseHeading: {
     en: 'Why the build is static',

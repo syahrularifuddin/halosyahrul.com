@@ -8,7 +8,7 @@ import AppThemeInitializer from '@/packages/libs/AppTheme/AppThemeInitializer';
 
 function BaseLayout({ children }: PropsWithChildren) {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex min-h-screen flex-col pb-24 md:pb-0">
       <TopLoader height={3} showShadow />
       <Header />
       <div className="flex-1">{children}</div>

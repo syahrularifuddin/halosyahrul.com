@@ -1,5 +1,5 @@
 {
-  "name": "gading.dev",
+  "name": "halosyahrul",
   "version": "3.1.0",
   "private": true,
   "scripts": {
@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "ts-node": "sh -c 'ts-node -r tsconfig-paths/register ${0}'",
     "app:revalidate": "npm run ts-node ./src/scripts/app:revalidate.ts",
-    "cloudinary:sync": "npm run ts-node ./src/scripts/cloudinary:sync.ts"
+    "cloudinary:sync": "npm run ts-node ./src/scripts/cloudinary:sync.ts",
+    "og:default": "node src/scripts/og-default.mjs"
   },
   "dependencies": {
     "dayjs": "^1.11.13",

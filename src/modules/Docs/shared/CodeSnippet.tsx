@@ -1,4 +1,4 @@
-import { highlight, languageClass, SnippetLang } from '@/modules/Docs/components/highlight';
+import { highlight, languageClass, SnippetLang } from '@/modules/Docs/shared/highlight';
 
 interface Props {
   /** repo path the lines come from, shown as the title */
@@ -21,7 +21,7 @@ function CodeSnippet({ file, code, lang }: Props) {
       </figcaption>
       <pre
         style={{ background: 'transparent', borderRadius: 0 }}
-        className="docs-code-scroll m-0 overflow-x-auto px-4 py-4 font-mono text-[12.5px] leading-[1.7] text-[#F3ECE2]"
+        className="docs-code-scroll m-0 overflow-x-auto px-4 py-4 font-mono text-[12.5px] leading-[1.7] text-[#E9F0EA]"
       >
         <code
           className={`code-highlight ${langClass}`}

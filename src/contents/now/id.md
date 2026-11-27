@@ -3,7 +3,6 @@ title: "Now"
 date: 2026-11-23
 description: "Lagi sibuk apa sekarang?"
 keywords: "now, halaman now, syahrul"
-image: "/media/default-banners/0.jpg"
 currently: "Menyiapkan halosyahrul.com"
 ---
 

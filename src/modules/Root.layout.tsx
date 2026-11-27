@@ -1,6 +1,6 @@
 import '@/designs/styles/globals.css';
 
-import { Caveat, JetBrains_Mono, Plus_Jakarta_Sans, Space_Grotesk } from 'next/font/google';
+import { Figtree, Gabarito, IBM_Plex_Mono, Shantell_Sans } from 'next/font/google';
 import Script from 'next/script';
 import { PropsWithChildren } from 'react';
 
@@ -11,30 +11,32 @@ import { getLangugageServer } from '@/packages/libs/I18n/i18n.server';
 import { I18n, I18nLocales } from '@/packages/libs/I18n/interface';
 import ServiceWorkerRegister from '@/packages/libs/PWA/ServiceWorkerRegister';
 
-const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: '--font-plus-jakarta-sans',
+/** body copy and UI */
+const fontBody = Figtree({
+  variable: '--ff-body',
   subsets: ['latin'],
   weight: ['400', '500', '600', '700']
 });
 
-const spaceGrotesk = Space_Grotesk({
-  variable: '--font-space-grotesk',
+/** headlines and titles */
+const fontDisplay = Gabarito({
+  variable: '--ff-display',
   subsets: ['latin'],
-  weight: ['500', '600', '700']
+  weight: ['500', '600', '700', '800']
 });
 
-/** labels, dates, chips, terminal */
-const jetbrainsMono = JetBrains_Mono({
-  variable: '--font-jetbrains-mono',
+/** labels, dates, chips, terminal, code */
+const fontMono = IBM_Plex_Mono({
+  variable: '--ff-mono',
   subsets: ['latin'],
   weight: ['400', '500']
 });
 
-/** hand-written accents only (doodles, stickers, sign-off) */
-const caveat = Caveat({
-  variable: '--font-caveat',
+/** hand-written accents only (notes beside things, the sign-off) */
+const fontHand = Shantell_Sans({
+  variable: '--ff-hand',
   subsets: ['latin'],
-  weight: ['600']
+  weight: ['500', '600']
 });
 
 /**
@@ -56,7 +58,7 @@ async function RootLayout({ children, ...props }: PropsWithChildren<NextPageProp
   const htmlLang = I18n[currentLang].replace('_', '-').toLowerCase();
 
   return (
-    <html lang={htmlLang} suppressHydrationWarning>
+    <html lang={htmlLang} className={`${fontBody.variable} ${fontDisplay.variable} ${fontMono.variable} ${fontHand.variable}`} suppressHydrationWarning>
       {/* `next/head` is Pages Router only; App Router layouts render <head> directly */}
       {/* eslint-disable-next-line @next/next/no-head-element */}
       <head>
@@ -70,7 +72,7 @@ async function RootLayout({ children, ...props }: PropsWithChildren<NextPageProp
           */}
         <script dangerouslySetInnerHTML={{ __html: APPLY_THEME_SCRIPT }} />
       </head>
-      <body className={`${plusJakartaSans.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${caveat.variable} antialiased relative min-h-screen overflow-x-hidden`}>
+      <body className="antialiased relative min-h-screen overflow-x-hidden">
         {children}
         {!IS_DEV && <ServiceWorkerRegister />}
         {!IS_DEV && !!ANALYTICS_ID && (

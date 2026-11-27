@@ -57,7 +57,7 @@ const socialLinks = [
 
 function SocialLinks() {
   return (
-    <div className="flex justify-center gap-x-3">
+    <div className="flex gap-x-3">
       {socialLinks.filter((social) => social.handle).map((social) => (
         <Link
           key={social.name}

@@ -6,16 +6,15 @@ import ContentCodeBlock from '@/modules/Content/components/ContentCodeBlock';
 import ContentImage from '@/modules/Content/components/ContentImage';
 import { getBlogList } from '@/modules/Content/services/content-parser';
 import withComponentsLocales from '@/modules/Docs/Components/Components.locales';
-import DocsSection from '@/modules/Docs/components/DocsSection';
-import DocsShell from '@/modules/Docs/components/DocsShell';
-import { highlight, languageClass } from '@/modules/Docs/components/highlight';
 import { generateDocsPathsDefault, generateDocsPathsWithLang } from '@/modules/Docs/Docs.shared';
+import DocsSection from '@/modules/Docs/shared/DocsSection';
+import DocsShell from '@/modules/Docs/shared/DocsShell';
+import { highlight, languageClass } from '@/modules/Docs/shared/highlight';
 import HeroTerminal from '@/modules/Home/components/HeroTerminal';
 import PostCard from '@/modules/Home/components/PostCard';
 import Button from '@/packages/components/base/Buttons/Button';
 import Card from '@/packages/components/base/Displays/Card';
 import ButtonLink from '@/packages/components/base/Navigations/ButtonLink';
-import Banner from '@/packages/components/layouts/Header/Banner';
 import { I18nLocales } from '@/packages/libs/I18n/interface';
 import { getDefaultLanguage } from '@/packages/libs/I18n/utils';
 
@@ -76,21 +75,6 @@ async function ComponentsPage(props: NextPageProps<{ lang: I18nLocales }>) {
           </div>
         </Stage>
         <Source label={content.sourceLabel} path="src/packages/components/base/Buttons/Button.tsx, src/packages/components/base/Navigations/ButtonLink.tsx" />
-      </DocsSection>
-
-      <DocsSection id="banner" title={content.bannerTitle} description={content.bannerDesc}>
-        <div className="relative overflow-hidden rounded-[20px] shadow-soft" style={{ paddingTop: 'var(--header-h)' }}>
-          <Banner bgImage="/media/default-banners/5.jpg" height="200px" containerClassName="flex items-center justify-center px-5">
-            <span className="rounded-full bg-card px-4 py-2 text-sm font-semibold shadow-soft">{content.bannerContent}</span>
-          </Banner>
-          <div
-            className="pointer-events-none absolute inset-x-0 top-0 z-20 flex items-center justify-center border-b border-dashed border-base-content/40 font-mono text-xs text-muted"
-            style={{ height: 'var(--header-h)' }}
-          >
-            {content.bannerHeader}
-          </div>
-        </div>
-        <Source label={content.sourceLabel} path="src/packages/components/layouts/Header/Banner.tsx" />
       </DocsSection>
 
       <DocsSection id="image" title={content.imageTitle} description={content.imageDesc}>
