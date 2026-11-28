@@ -49,7 +49,7 @@ function ProjectCard({ project, lang, variant = 'standard', className }: Props) 
               className="hover:underline underline-offset-4"
               data-umami-event={`project_${project.id}_live`}
             >
-              {project.liveUrl}
+              {project.liveUrl.replace(/^https?:\/\//, '')}
             </a>
           ) : (
             <span>{tag}</span>
