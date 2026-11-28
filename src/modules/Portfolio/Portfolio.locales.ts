@@ -9,13 +9,13 @@ const withPortfolioLocales = createContentLocales({
     en: 'Things I build and run.',
     id: 'Hal-hal yang saya bangun dan jalankan.'
   },
-  buildingTitle: {
-    en: 'Things I\'m building',
-    id: 'Yang sedang saya bangun'
+  weekendTitle: {
+    en: 'Personal projects',
+    id: 'Proyek pribadi'
   },
-  buildingDesc: {
-    en: 'Products and side quests, in roughly that order.',
-    id: 'Produk dan proyek sampingan, kurang lebih berurutan begitu.'
+  weekendDesc: {
+    en: 'Small products, experiments, and deliberate practice beyond the day job.',
+    id: 'Produk kecil, eksperimen, dan latihan terarah di luar pekerjaan utama.'
   },
   workTitle: {
     en: 'Professional work',
