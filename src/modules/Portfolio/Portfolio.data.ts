@@ -34,6 +34,8 @@ export interface Project {
   chips?: string[];
   /** left out for work that has no public page: the card says `internal` */
   link?: ProjectLink;
+  /** Public running application, alongside its source link. */
+  liveUrl?: string;
   /** where the work was based, shown top right of the card (professional work) */
   location?: Localized;
   /** shown in "Things I'm building" on Home, in this order, the first one as the big card */
@@ -48,9 +50,66 @@ export interface Project {
  * Client work goes here too once it can be named.
  */
 export const PROJECTS: Project[] = [
-  // TODO: add your own projects; the first `home: true` entry is the big Home card.
+  {
+    id: 'expense-tracker',
+    liveUrl: 'https://expense.halosyahrul.com',
+    tone: 'teal',
+    tag: 'expense-tracker',
+    title: {
+      en: 'From inbox to insight.',
+      id: 'Dari inbox menjadi insight.'
+    },
+    summary: {
+      en: 'A production-minded personal finance app that turns bank and e-wallet notification emails into structured transactions. I designed the Rust API, PostgreSQL data model, authentication flow, and Next.js dashboard with a mock mode for fast, safe evaluation.',
+      id: 'Aplikasi keuangan pribadi dengan pendekatan production-minded yang mengubah email notifikasi bank dan e-wallet menjadi transaksi terstruktur. Saya merancang API Rust, model data PostgreSQL, alur autentikasi, dan dashboard Next.js dengan mock mode untuk evaluasi yang cepat dan aman.'
+    },
+    chips: ['Rust', 'Axum', 'Next.js', 'PostgreSQL', 'Docker'],
+    link: {
+      label: { en: 'github.com/syahrularifuddin/expense-tracker ↗', id: 'github.com/syahrularifuddin/expense-tracker ↗' },
+      target: { type: 'external', href: 'https://github.com/syahrularifuddin/expense-tracker' }
+    }
+  },
+  {
+    id: 'ig-grabber',
+    liveUrl: 'https://ig.halosyahrul.com',
+    tone: 'rose',
+    tag: 'ig-grabber',
+    title: {
+      en: 'A resilient media pipeline.',
+      id: 'Pipeline media yang tangguh.'
+    },
+    summary: {
+      en: 'A full-stack media downloader built around the realities of modern web extraction: browser-like TLS/HTTP2 fingerprints, layered extraction strategies, session-aware access, and backend-proxied downloads that avoid browser CORS constraints.',
+      id: 'Downloader media full-stack yang dibangun untuk menghadapi realitas ekstraksi web modern: fingerprint TLS/HTTP2 seperti browser, strategi ekstraksi berlapis, akses berbasis sesi, dan download melalui backend untuk menghindari batasan CORS browser.'
+    },
+    chips: ['Rust', 'Axum', 'Next.js', 'TypeScript', 'Docker'],
+    link: {
+      label: { en: 'github.com/syahrularifuddin/ig-grabber ↗', id: 'github.com/syahrularifuddin/ig-grabber ↗' },
+      target: { type: 'external', href: 'https://github.com/syahrularifuddin/ig-grabber' }
+    }
+  },
+  {
+    id: 'note',
+    liveUrl: 'https://note.halosyahrul.com',
+    tone: 'lilac',
+    tag: 'note.halosyahrul.com',
+    title: {
+      en: 'A notebook built to protect your thoughts.',
+      id: 'Notebook yang menjaga ide Anda.'
+    },
+    summary: {
+      en: 'A self-hosted, Notion-inspired notebook where reliability is a feature: block editing, nested pages, FTS5 search, conflict-aware saves, draft recovery, and security-conscious sessions and uploads.',
+      id: 'Notebook self-hosted bergaya Notion dengan reliability sebagai fitur: block editing, nested pages, pencarian FTS5, penyimpanan yang sadar konflik, pemulihan draft, serta sesi dan upload yang memperhatikan keamanan.'
+    },
+    chips: ['Rust', 'SQLite', 'SvelteKit', 'Tiptap', 'Docker'],
+    link: {
+      label: { en: 'github.com/syahrularifuddin/note ↗', id: 'github.com/syahrularifuddin/note ↗' },
+      target: { type: 'external', href: 'https://github.com/syahrularifuddin/note' }
+    }
+  },
   {
     id: 'halosyahrul',
+    liveUrl: 'https://halosyahrul.com',
     tone: 'brand',
     tag: 'halosyahrul.com',
     title: {

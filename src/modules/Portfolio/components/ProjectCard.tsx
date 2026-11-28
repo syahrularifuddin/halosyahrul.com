@@ -71,6 +71,18 @@ function ProjectCard({ project, lang, variant = 'standard', className }: Props) 
           </ul>
         )}
 
+        {project.liveUrl && (
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={linkClassName}
+            data-umami-event={`project_${project.id}_live`}
+          >
+            {lang === 'id' ? 'Buka proyek ↗' : 'Visit project ↗'}
+          </a>
+        )}
+
         {!link ? (
           <span className="mt-auto pt-2 font-mono text-sm font-medium text-muted">internal</span>
         ) : link.target.type === 'external' ? (

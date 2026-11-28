@@ -24,9 +24,9 @@ async function PortfolioPage(props: NextPageProps) {
     <div className="min-h-screen text-base-content">
       <PageHead title={content.title} description={content.desc} />
       <div className="wide-container pb-8 pt-12 md:pt-16">
-        <section className="mb-16">
-          <h2 className="font-display text-[30px] font-extrabold leading-[1.05] tracking-[-0.03em] sm:text-[40px]">{content.buildingTitle}</h2>
-          <p className="mt-1.5 text-muted">{content.buildingDesc}</p>
+        <section className="mb-16" aria-labelledby="weekend-projects">
+          <h2 id="weekend-projects" className="font-display text-[30px] font-extrabold leading-[1.05] tracking-[-0.03em] sm:text-[40px]">{content.weekendTitle}</h2>
+          <p className="mt-1.5 text-muted">{content.weekendDesc}</p>
           <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2">
             {PROJECTS.map((project) => (
               <ProjectCard key={project.id} project={project} lang={lang} />
