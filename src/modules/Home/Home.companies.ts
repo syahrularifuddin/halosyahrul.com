@@ -10,6 +10,7 @@ export interface WorkedWithCompany {
 export const WORKED_WITH: WorkedWithCompany[] = [
   { id: 'anabatic', logo: '/media/companies/anabatic.png', name: 'Anabatic Technologies', url: 'https://anabatic.com' },
   { id: 'its', logo: '/media/companies/its.png', name: 'Institut Teknologi Sepuluh Nopember', url: 'https://www.its.ac.id' },
+  { id: 'machinevision', logo: '/media/companies/machinevision.png', name: 'Machine Vision', url: 'https://www.machinevision.global/career' },
   { id: 'amar-bank', logo: '/media/companies/amar-bank.png', name: 'Amar Bank', url: 'https://amarbank.co.id' },
   { id: 'halodoc', logo: '/media/companies/halodoc.png', name: 'Halodoc', url: 'https://www.halodoc.com' },
   { id: 'tokopedia', logo: '/media/companies/tokopedia.png', name: 'Tokopedia', url: 'https://www.tokopedia.com' },
