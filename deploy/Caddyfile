@@ -35,3 +35,15 @@ ig.{$DOMAIN} {
 		reverse_proxy ig-web:3000
 	}
 }
+
+# Note (github.com/syahrularifuddin/note), its own compose stack on this VPS.
+# Reached over the shared `edge` Docker network.
+note.{$DOMAIN} {
+	encode zstd gzip
+	handle /api/* {
+		reverse_proxy note-api:8080
+	}
+	handle {
+		reverse_proxy note-web:3000
+	}
+}
