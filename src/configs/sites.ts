@@ -2,7 +2,7 @@ import { NODE_ENV } from './envs';
 
 export const IS_DEV = NODE_ENV !== 'production';
 
-export const SITE_NAME = 'Halo Syahrul';
+export const SITE_NAME = 'Syahrul Arifuddin';
 /** text of the logo in the header */
 export const SITE_DOMAIN = 'halosyahrul.com';
 export const PRODUCTION_URL = 'https://halosyahrul.com';

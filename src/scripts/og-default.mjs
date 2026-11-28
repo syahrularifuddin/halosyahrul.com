@@ -18,7 +18,7 @@ const mark = h('svg', { width: 300, height: 300, viewBox: '0 0 100 100', style: 
 
 const card = h('div', { style: { display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', width: 1200, height: 630, padding: '0 72px 64px', background: C.base, position: 'relative' } },
   mark,
-  h('div', { style: { display: 'flex', fontFamily: 'Display', fontWeight: 800, fontSize: 92, letterSpacing: -3, lineHeight: 1.02, color: C.content } }, 'Halo Syahrul'),
+  h('div', { style: { display: 'flex', fontFamily: 'Display', fontWeight: 800, fontSize: 92, letterSpacing: -3, lineHeight: 1.02, color: C.content } }, 'Syahrul Arifuddin'),
   h('div', { style: { display: 'flex', width: 190, height: 20, marginTop: 22, borderRadius: 6, background: C.mark, transform: 'rotate(-1deg)' } }),
   h('div', { style: { display: 'flex', marginTop: 30, maxWidth: 640, fontFamily: 'Mono', fontWeight: 500, fontSize: 28, lineHeight: 1.4, color: C.content } }, 'Personal site and blog of Syahrul Arifuddin.'),
   h('div', { style: { display: 'flex', marginTop: 18, fontFamily: 'Mono', fontWeight: 500, fontSize: 24, color: C.note } }, 'halosyahrul.com'));
