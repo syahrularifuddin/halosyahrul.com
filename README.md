@@ -1,11 +1,19 @@
 # 👨‍💻 Halo Syahrul
 
+[![Website](https://img.shields.io/badge/website-halosyahrul.com-2f6f4e?style=flat-square&logo=googlechrome&logoColor=white)](https://halosyahrul.com)
+[![Deploy](https://img.shields.io/github/actions/workflow/status/syahrularifuddin/halosyahrul.com/deploy.yml?branch=main&label=deploy&style=flat-square)](https://github.com/syahrularifuddin/halosyahrul.com/actions/workflows/deploy.yml)
+[![Version](https://img.shields.io/github/package-json/v/syahrularifuddin/halosyahrul.com?style=flat-square)](https://github.com/syahrularifuddin/halosyahrul.com/releases)
+[![License](https://img.shields.io/github/license/syahrularifuddin/halosyahrul.com?style=flat-square)](LICENSE)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=nextdotjs&logoColor=white)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+
 > My personal homepage & blog site with Next.js : https://halosyahrul.com
 
 ## Prerequisites
 - [NodeJS](https://nodejs.org/en/download/)
 
-## Ongoing Features
+## Features
 - [x] Dark Mode
 - [x] Color System Documentation
 - [x] Mobile friendly
@@ -29,8 +37,6 @@
 - [x] Search posts & filter by tags
 - [x] Featured posts (Homepage & Blog list/filter)
 - [x] Command Palette (`Cmd + K` / `Ctrl + K`) for instant search & navigation
-- [ ] Homelab Live Stats Dashboard or Spotify "Currently Playing" integration
-- [ ] Interactive MDX Components (React Playground / Sandpack) for tutorials
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

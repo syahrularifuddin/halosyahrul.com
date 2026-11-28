@@ -1,16 +1,25 @@
 ---
 title: "About"
 date: 2026-11-23
-description: "Tentang Syahrul Arifuddin."
-keywords: "syahrul arifuddin, tentang syahrul, halo syahrul"
+description: "Tentang website ini, halosyahrul.com."
+keywords: "halosyahrul, tentang website ini, situs pribadi, blog"
 ---
 
-{/* TODO: tulis tentang dirimu: apa yang kamu kerjakan, apa yang kamu suka, cara menghubungimu. */}
-Hai, saya ***Syahrul Arifuddin***. Halaman ini masih ditulis.
+**halosyahrul.com** adalah halaman pribadi dan blog saya: sudut kecil di internet untuk tulisan, proyek, dan hal yang sedang saya kerjakan.
 
-Sementara itu, karya saya bisa dilihat di [GitHub](https://github.com/syahrularifuddin), atau cek halaman [Now](/now) saya.
+### Yang ada di sini
+- [Blog](/blog) — catatan dan tulisan, bisa difilter berdasarkan tag.
+- [Portfolio](/portfolio) — proyek pilihan beserta tautan ke source code-nya.
+- [Now](/now) — ringkasan singkat hal yang sedang saya fokuskan sekarang.
+- [Resume](/resume) — latar belakang saya dalam format yang bisa dicetak.
+- [Docs](/docs) — design system dan content pipeline yang dipakai situs ini.
 
----
+### Cara situs ini dibangun
+- **Next.js** dengan App Router dan React Server Components.
+- **TypeScript**, **Tailwind CSS**, dan **daisyUI** untuk tampilannya.
+- Konten **MDX**, jadi artikel dan halaman bisa menyematkan komponen React secara langsung.
+- Konten dua bahasa, **Inggris** dan **Indonesia**.
+- Siap PWA dengan dukungan offline, command palette, dan pencarian teks penuh.
+- Dijalankan sebagai image **Docker** di belakang **Caddy**.
 
-#### Tentang website ini
-Situs ini dibangun dengan *Next.js* dan berbasis [gading.dev](https://github.com/gadingnst/gading.dev) karya Gading Nasution. Source code-nya ada [di sini](https://github.com/syahrularifuddin/halosyahrul.com).
+Source code-nya terbuka di [GitHub](https://github.com/syahrularifuddin/halosyahrul.com).
