@@ -82,15 +82,13 @@ jobs:
             DOCKER_CONFIG="$PULL_CONFIG" docker compose pull
             rm -rf "$PULL_CONFIG"
             docker compose up -d --remove-orphans
-            echo "step: compose up done"
+            set -x
             # Caddyfile is a single-file bind mount. The copy action replaces the
             # file (new inode), so the running Caddy can keep seeing the old
             # content and `caddy reload` reports "config is unchanged". Compare
             # the mounted copy and restart Caddy only when the content differs.
             HOST_CADDY_SUM=$(sha256sum Caddyfile | cut -d' ' -f1)
-            echo "step: host sum done"
             CONT_CADDY_SUM=$(docker compose exec -T caddy sha256sum /etc/caddy/Caddyfile | cut -d' ' -f1)
-            echo "step: container sum done"
             if [ "$HOST_CADDY_SUM" != "$CONT_CADDY_SUM" ]; then
               echo "Caddyfile changed; restarting caddy"
               docker compose restart caddy
@@ -98,6 +96,7 @@ jobs:
               echo "Caddyfile unchanged; nothing to reload"
             fi
             docker image prune -f
+            set +x
         env:
           DEPLOY_DIR: ${{ secrets.VPS_TARGET_PATH || '/opt/halosyahrul' }}
           GHCR_USER: ${{ github.actor }}
