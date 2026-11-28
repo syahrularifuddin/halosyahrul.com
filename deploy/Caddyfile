@@ -1,3 +1,4 @@
+# Routed apps: the main site, the expense tracker, IG Grabber and Note.
 # {$DOMAIN} comes from .env on the VPS via the compose environment.
 # Caddy gets and renews the Let's Encrypt cert for it automatically.
 {$DOMAIN} {

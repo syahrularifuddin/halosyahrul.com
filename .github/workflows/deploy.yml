@@ -82,10 +82,18 @@ jobs:
             DOCKER_CONFIG="$PULL_CONFIG" docker compose pull
             rm -rf "$PULL_CONFIG"
             docker compose up -d --remove-orphans
-            # The bind-mounted Caddyfile changed but compose won't recreate the
-            # container, so reload Caddy in place (fallback: restart it).
-            docker compose exec -T caddy caddy reload --config /etc/caddy/Caddyfile \
-              || docker compose restart caddy
+            # Caddyfile is a single-file bind mount. The copy action replaces the
+            # file (new inode), so the running Caddy can keep seeing the old
+            # content and `caddy reload` reports "config is unchanged". Compare
+            # the mounted copy and restart Caddy only when the content differs.
+            HOST_CADDY_SUM=$(sha256sum Caddyfile | cut -d' ' -f1)
+            CONT_CADDY_SUM=$(docker compose exec -T caddy sha256sum /etc/caddy/Caddyfile | cut -d' ' -f1)
+            if [ "$HOST_CADDY_SUM" != "$CONT_CADDY_SUM" ]; then
+              echo "Caddyfile changed; restarting caddy"
+              docker compose restart caddy
+            else
+              docker compose exec -T caddy caddy reload --config /etc/caddy/Caddyfile
+            fi
             docker image prune -f
         env:
           DEPLOY_DIR: ${{ secrets.VPS_TARGET_PATH || '/opt/halosyahrul' }}
