@@ -41,7 +41,19 @@ function ProjectCard({ project, lang, variant = 'standard', className }: Props) 
     >
       <div className={cn(['flex flex-col justify-between gap-8 p-7', isFeature && 'md:p-9', TONES[tone].block])}>
         <div className="flex items-center justify-between gap-3 font-mono text-xs font-medium">
-          <span>{tag}</span>
+          {project.liveUrl ? (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline underline-offset-4"
+              data-umami-event={`project_${project.id}_live`}
+            >
+              {tag} ↗
+            </a>
+          ) : (
+            <span>{tag}</span>
+          )}
           {location && <span>{location[lang]}</span>}
         </div>
         <h3
@@ -69,18 +81,6 @@ function ProjectCard({ project, lang, variant = 'standard', className }: Props) 
               </li>
             ))}
           </ul>
-        )}
-
-        {project.liveUrl && (
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={linkClassName}
-            data-umami-event={`project_${project.id}_live`}
-          >
-            {lang === 'id' ? 'Buka proyek ↗' : 'Visit project ↗'}
-          </a>
         )}
 
         {!link ? (
