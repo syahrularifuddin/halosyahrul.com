@@ -6,8 +6,15 @@ export interface WorkedWithCompany {
   logo?: string;
 }
 
-/**
- * "Worked with" strip on the homepage: companies only, products live on /portfolio.
- * TODO: add the companies you worked with; while empty, the strip is hidden.
- */
-export const WORKED_WITH: WorkedWithCompany[] = [];
+/** Companies and organisations Syahrul has worked with. */
+export const WORKED_WITH: WorkedWithCompany[] = [
+  { id: 'anabatic', logo: '/media/companies/anabatic.png', name: 'Anabatic Technologies', url: 'https://anabatic.com' },
+  { id: 'its', logo: '/media/companies/its.png', name: 'Institut Teknologi Sepuluh Nopember', url: 'https://www.its.ac.id' },
+  { id: 'machinevision', logo: '/media/companies/machinevision.png', name: 'Machine Vision', url: 'https://www.machinevision.global/career' },
+  { id: 'amar-bank', logo: '/media/companies/amar-bank.png', name: 'Amar Bank', url: 'https://amarbank.co.id' },
+  { id: 'halodoc', logo: '/media/companies/halodoc.png', name: 'Halodoc', url: 'https://www.halodoc.com' },
+  { id: 'tokopedia', logo: '/media/companies/tokopedia.png', name: 'Tokopedia', url: 'https://www.tokopedia.com' },
+  { id: 'bytedance', logo: '/media/companies/bytedance.png', name: 'Bytedance', url: 'https://www.bytedance.com' },
+  { id: 'govtech-procurement', logo: '/media/companies/govtech-procurement.png', name: 'Govtech Procurement', url: 'https://www.lkpp.go.id' },
+  { id: 'goto', logo: '/media/companies/goto.png', name: 'GoTo Group', url: 'https://www.gotocompany.com' }
+];

@@ -18,7 +18,7 @@ function Logo({ company }: { company: WorkedWithCompany }) {
   }
   return (
     // eslint-disable-next-line @next/next/no-img-element -- tiny static logos, no optimisation needed
-    <img src={company.logo} alt="" width={24} height={24} className="h-6 w-6 rounded-md object-contain" loading="lazy" />
+    <img src={company.logo} alt="" width={24} height={24} className="h-6 w-auto max-w-20 object-contain" loading="lazy" />
   );
 }
 
