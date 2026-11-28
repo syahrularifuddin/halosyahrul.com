@@ -1,7 +1,7 @@
 export const AUTHOR_NAME = 'Syahrul Arifuddin';
 export const AUTHOR_FULLNAME = 'Syahrul Arifuddin';
-/** TODO: a public contact address; left empty, the Contact button is hidden */
-export const AUTHOR_EMAIL = '';
+/** Public contact address. */
+export const AUTHOR_EMAIL = 'halosyahrul@gmail.com';
 
 /** social media handles; an empty one is hidden from the site */
 export const AUTHOR_GITHUB = 'syahrularifuddin';

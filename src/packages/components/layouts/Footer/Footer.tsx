@@ -1,4 +1,4 @@
-import { AUTHOR_GITHUB, AUTHOR_NAME } from '@/configs/author';
+import { AUTHOR_EMAIL, AUTHOR_GITHUB, AUTHOR_NAME } from '@/configs/author';
 import { BASE_URL, SITE_NAME } from '@/configs/sites';
 import NextLink from '@/packages/components/base/Navigations/NextLink';
 import SocialLinks from '@/packages/components/layouts/Footer/SocialLinks';
@@ -31,6 +31,12 @@ function Footer() {
           <div className="col-span-2 md:col-span-1">
             <span className="font-hand text-[22px] text-hero-note">sampai jumpa lagi!</span>
             <p className="mb-6 mt-1 font-display text-4xl font-extrabold leading-none tracking-[-0.03em] sm:text-5xl">{SITE_NAME}</p>
+            <a
+              href={`mailto:${AUTHOR_EMAIL}`}
+              className="mb-5 inline-block text-lg font-semibold underline decoration-hero-note/70 decoration-2 underline-offset-4 transition hover:text-hero-note"
+            >
+              {AUTHOR_EMAIL}
+            </a>
             <SocialLinks />
           </div>
 
