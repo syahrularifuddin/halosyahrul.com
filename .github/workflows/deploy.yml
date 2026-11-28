@@ -92,7 +92,7 @@ jobs:
               echo "Caddyfile changed; restarting caddy"
               docker compose restart caddy
             else
-              docker compose exec -T caddy caddy reload --config /etc/caddy/Caddyfile
+              echo "Caddyfile unchanged; nothing to reload"
             fi
             docker image prune -f
         env:
