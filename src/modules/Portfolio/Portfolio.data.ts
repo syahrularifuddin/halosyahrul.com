@@ -113,12 +113,12 @@ export const PROJECTS: Project[] = [
     tone: 'brand',
     tag: 'halosyahrul.com',
     title: {
-      en: 'This website.',
-      id: 'Website ini.'
+      en: 'Personal Portfolio & Engineering Blog',
+      id: 'Portofolio & Blog Engineering'
     },
     summary: {
-      en: 'My personal site and blog, built with **Next.js** and deployed with Docker and GitHub Actions to my own VPS.',
-      id: 'Situs pribadi dan blog saya, dibangun dengan **Next.js** dan di-deploy dengan Docker dan GitHub Actions ke VPS sendiri.'
+      en: 'A bilingual portfolio and technical publishing platform built with **Next.js** and TypeScript. Owned end to end, from application development to containerized deployment on a self-managed VPS, with automated delivery through GitHub Actions.',
+      id: 'Platform portofolio dan publikasi teknis bilingual berbasis **Next.js** dan TypeScript. Dikembangkan dan dikelola secara menyeluruh, dari pengembangan aplikasi hingga deployment berbasis container di VPS yang dikelola sendiri, dengan otomatisasi melalui GitHub Actions.'
     },
     chips: ['Next.js', 'Docker', 'GitHub Actions'],
     link: {
